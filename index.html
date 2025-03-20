@@ -50,18 +50,309 @@
   <body>
     <div id="root"></div>
 
-    <!-- Load all component scripts -->
-    <script type="text/babel" src="types.ts"></script>
-    <script type="text/babel" src="ServiceCard.tsx"></script>
-    <script type="text/babel" src="NavBar.tsx"></script>
-    <script type="text/babel" src="HeroSection.tsx"></script>
-    <script type="text/babel" src="AboutSection.tsx"></script>
-    <script type="text/babel" src="ServicesSection.tsx"></script>
-    <script type="text/babel" src="ContactSection.tsx"></script>
-    <script type="text/babel" src="Footer.tsx"></script>
-    <script type="text/babel" src="GhostProtocol.tsx"></script>
+    <!-- All components in a single file for simplicity -->
+    <script type="text/babel">
+      // ServiceCard Component
+      const ServiceCard = ({ name, price, description }) => {
+        return (
+          <article className="service-card glitch-hover relative p-9 rounded-lg border border-solid transition-all ease-in-out backdrop-blur-[10px] bg-neutral-800 bg-opacity-90 border-green-500 border-opacity-20 duration-[0.4s]">
+            <h3 className="mb-5 text-2xl font-bold tracking-wide text-green-500 duration-[0.3s] ease-[ease] transition-[color]">
+              {name}
+            </h3>
+            <p className="mb-5 text-sm leading-relaxed min-h-11 text-neutral-400">
+              {description}
+            </p>
+            <div className="flex justify-between items-center mt-auto">
+              <p className="flex gap-1 items-baseline text-2xl font-extrabold tracking-wide text-white">
+                <span className="text-sm text-stone-500">LKR</span>
+                <span>{price}</span>
+              </p>
+              <a
+                className="flex justify-center items-center no-underline rounded-full border border-solid transition-all ease-in-out cursor-pointer border-green-500 border-opacity-30 duration-[0.4s] h-[45px] w-[45px]"
+                href="tel:+94710555055"
+                aria-label="Call for service"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#33ff33"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14m-7-7l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        );
+      };
 
-    <!-- Main entry point -->
-    <script type="text/babel" src="index.js"></script>
+      // NavBar Component
+      const NavBar = () => {
+        const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+        function toggleMenu() {
+          setIsMenuOpen(!isMenuOpen);
+        }
+
+        return (
+          <header>
+            <nav className="flex fixed inset-x-0 top-0 justify-between items-center px-10 py-5 border-b-2 border-solid backdrop-blur-[10px] bg-zinc-900 bg-opacity-90 border-b-green-500 z-[1000] max-sm:flex-col max-sm:gap-4">
+              <h1 className="text-2xl text-green-500">GHOST PROTOCOL</h1>
+              <div className="flex gap-8 items-center max-sm:hidden max-sm:flex-col max-sm:items-center">
+                <a
+                  className="relative px-0 py-2 text-white no-underline transition-all duration-[0.3s] ease-[ease] hover:text-green-500"
+                  href="#about"
+                >
+                  About
+                </a>
+                <a
+                  className="text-white no-underline hover:text-green-500 transition-colors duration-300"
+                  href="#features"
+                >
+                  Features
+                </a>
+                <a
+                  className="text-white no-underline hover:text-green-500 transition-colors duration-300"
+                  href="#contact"
+                >
+                  Contact
+                </a>
+              </div>
+            </nav>
+          </header>
+        );
+      };
+
+      // HeroSection Component
+      const HeroSection = () => {
+        return (
+          <section className="flex flex-col justify-center items-start px-10 pt-24 pb-16 pb-20 mx-auto my-0 w-full max-w-[1200px] min-h-[90vh] max-sm:items-center max-sm:px-5 max-sm:pt-20 max-sm:pb-10 max-sm:text-center">
+            <h2 className="relative mb-8 text-5xl tracking-wider leading-tight text-green-500 transition-all ease-in-out duration-[0.4s] max-sm:mb-5 max-sm:text-4xl">
+              Secure. Stealthy. Digital.
+            </h2>
+            <p className="mb-10 text-lg leading-relaxed max-w-[600px] text-white text-opacity-90 max-sm:mb-8 max-sm:text-base">
+              Enter the digital realm where security meets style. We are Sri
+              Lanka's premier cybersecurity and digital solutions provider,
+              offering enterprise-grade security with cutting-edge innovation.{" "}
+            </p>
+          </section>
+        );
+      };
+
+      // AboutSection Component
+      const AboutSection = () => {
+        return (
+          <section
+            id="about"
+            className="px-5 py-16 mx-auto my-0 bg-neutral-800 bg-opacity-90 max-w-[1200px]"
+          >
+            <h3 className="mb-5 text-2xl text-center text-green-500">
+              About Ghost Protocol
+            </h3>
+            <div className="p-8 mx-auto my-0 rounded-lg border border-solid bg-neutral-800 bg-opacity-90 border-green-500 border-opacity-20 max-w-[800px]">
+              <p className="mb-5 text-base leading-relaxed text-white">
+                Founded in 2024, Ghost Protocol has emerged as a leading force
+                in digital security and technology solutions. Our team of
+                certified security experts and developers brings over 15 years
+                of combined experience in cybersecurity, system administration,
+                and software development.
+              </p>
+              <ul
+                className="p-0 mx-0 my-5 text-white"
+                aria-label="Our certifications and services"
+              >
+                <li className="flex gap-2.5 items-center mb-4">
+                  <span className="text-green-500" aria-hidden="true">
+                    ✓
+                  </span>
+                  <span> ISO 27001 Certified Security Practices </span>
+                </li>
+                <li className="flex gap-2.5 items-center mb-4">
+                  <span className="text-green-500" aria-hidden="true">
+                    ✓
+                  </span>
+                  <span> 24/7 Emergency Response Team </span>
+                </li>
+                <li className="flex gap-2.5 items-center mb-4">
+                  <span className="text-green-500" aria-hidden="true">
+                    ✓
+                  </span>
+                  <span> End-to-End Encrypted Communications </span>
+                </li>
+              </ul>
+            </div>
+          </section>
+        );
+      };
+
+      // ServicesSection Component
+      const ServicesSection = () => {
+        const services = [
+          {
+            name: "System Repair",
+            price: "10,000+",
+            description:
+              "Expert diagnostics and repairs for both hardware and software issues. We bring your system back from the dead.",
+          },
+          {
+            name: "Update and OS installations",
+            price: "15,000+",
+            description:
+              "Clean OS installations and system updates with zero downtime. Your system, evolved.",
+          },
+          {
+            name: "Virus Removal and Recovery",
+            price: "10,000+",
+            description:
+              "Advanced malware elimination and data recovery. We purge the infection, preserve your data.",
+          },
+          {
+            name: "Maintenance and Optimizing",
+            price: "10,000+",
+            description:
+              "Performance tuning and system optimization. Unlock your machine's true potential.",
+          },
+          {
+            name: "Security Assessments",
+            price: "20,000+",
+            description:
+              "Comprehensive security audits and vulnerability analysis. Know your weaknesses before others do.",
+          },
+          {
+            name: "Pentests",
+            price: "50,000+",
+            description:
+              "Professional penetration testing with detailed reports. We break in so others can't.",
+          },
+          {
+            name: "OSINT Reports",
+            price: "20,000+",
+            description:
+              "Deep-dive intelligence gathering and digital footprint analysis. See what the network sees.",
+          },
+          {
+            name: "Web Hosting",
+            price: "15,000+",
+            description:
+              "Secure, high-performance hosting with 99.9% uptime. Your digital fortress in the cloud.",
+          },
+          {
+            name: "Website Building",
+            price: "60,000+",
+            description:
+              "Custom website development with cutting-edge tech. Your vision, our execution.",
+          },
+          {
+            name: "App Building",
+            price: "60,000+",
+            description:
+              "Native and cross-platform app development. Transform your idea into digital reality.",
+          },
+          {
+            name: "UI/UX",
+            price: "30,000+",
+            description:
+              "Intuitive interface design and user experience optimization. Where form meets function.",
+          },
+        ];
+
+        return (
+          <section className="px-5 py-16 bg-zinc-900">
+            <h2 className="relative mb-10 text-3xl text-center text-green-500">
+              {" "}
+              Services & Pricing{" "}
+            </h2>
+            <div
+              id="features"
+              className="grid gap-5 px-5 py-0 mx-auto my-0 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] max-w-[1200px] max-sm:grid-cols-[1fr]"
+            >
+              {services.map((service, index) => (
+                <ServiceCard
+                  key={index}
+                  name={service.name}
+                  price={service.price}
+                  description={service.description}
+                />
+              ))}
+            </div>
+          </section>
+        );
+      };
+
+      // ContactSection Component
+      const ContactSection = () => {
+        return (
+          <section
+            id="contact"
+            className="px-5 py-16 border-t-2 border-solid bg-zinc-900 border-t-green-500"
+          >
+            <h2 className="relative mb-10 text-3xl text-center text-green-500">
+              {" "}
+              Contact Us{" "}
+            </h2>
+            <div className="flex relative flex-col gap-5 items-center p-9 mx-auto my-0 border border-solid transition-all ease-in-out backdrop-blur-[10px] bg-neutral-800 bg-opacity-90 border-green-500 border-opacity-20 duration-[0.4s] max-w-[600px]">
+              <div className="flex gap-2.5 items-center text-base text-green-500 max-sm:flex-col max-sm:text-center">
+                <span className="font-[bold]"> Email: </span>
+                <a
+                  className="text-white no-underline hover:text-green-400 transition-colors duration-300"
+                  href="mailto:ghosts.lk@proton.me"
+                >
+                  {" "}
+                  ghosts.lk@proton.me{" "}
+                </a>
+              </div>
+              <div className="flex gap-2.5 items-center text-base text-green-500 max-sm:flex-col max-sm:text-center">
+                <span className="font-[bold]"> Phone: </span>
+                <a
+                  className="text-white no-underline hover:text-green-400 transition-colors duration-300"
+                  href="tel:+94710555055"
+                >
+                  {" "}
+                  +94 710 555 055{" "}
+                </a>
+              </div>
+            </div>
+          </section>
+        );
+      };
+
+      // Footer Component
+      const Footer = () => {
+        return (
+          <footer className="px-5 py-10 text-xs text-center border-t-2 border-solid border-t-green-500">
+            <p>© 2023 Ghost Protocol Private Limited. All rights reserved.</p>
+            <p className="mt-2.5 text-stone-500">
+              🔒 All communications are end-to-end encrypted. SSL/TLS Protected.
+            </p>
+          </footer>
+        );
+      };
+
+      // Main GhostProtocol Component
+      const GhostProtocol = () => {
+        return (
+          <div className="min-h-screen text-white bg-zinc-900">
+            <NavBar />
+            <main>
+              <HeroSection />
+              <AboutSection />
+              <ServicesSection />
+              <ContactSection />
+            </main>
+            <Footer />
+          </div>
+        );
+      };
+
+      // Render the app
+      const rootElement = document.getElementById("root");
+      const root = ReactDOM.createRoot(rootElement);
+      root.render(<GhostProtocol />);
+    </script>
   </body>
 </html>

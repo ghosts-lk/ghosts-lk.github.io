@@ -4,7 +4,7 @@ A modern, responsive website for a cybersecurity company built with React and Ta
 
 ## GitHub Pages Deployment
 
-This project is configured to be deployed directly to GitHub Pages.
+This project is configured to be deployed directly to GitHub Pages with a single HTML file that contains all the necessary code.
 
 ### How to Deploy
 
@@ -24,14 +24,25 @@ To run this project locally:
 
 ## Project Structure
 
-- `index.html` - The main HTML entry point
-- `index.js` - The JavaScript entry point that renders the React component
-- `GhostProtocol.tsx` - The main React component
-- Various component files for different sections of the website
+The entire application is contained in a single `index.html` file for simplicity and ease of deployment to GitHub Pages. This file includes:
+
+- HTML structure
+- CSS styling
+- React components
+- JavaScript for rendering
 
 ## Technologies Used
 
 - React
-- TypeScript
+- JSX
 - Tailwind CSS
 - GitHub Pages
+
+## Troubleshooting
+
+If you encounter a blank page:
+
+- Check your browser console for errors
+- Make sure all CDN resources are loading correctly
+- Try using a different browser
+- Ensure JavaScript is enabled in your browser
