@@ -1,8 +1,6 @@
 name: ghost_protocol
-description: Ghost Protocol website in Flutter
-
+description: Ghost Protocol - Cybersecurity and Digital Solutions Provider
 publish_to: "none"
-
 version: 1.0.0+1
 
 environment:
@@ -11,15 +9,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_web_plugins:
-    sdk: flutter
   google_fonts: ^4.0.4
   url_launcher: ^6.1.11
+  cupertino_icons: ^1.0.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.1
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/

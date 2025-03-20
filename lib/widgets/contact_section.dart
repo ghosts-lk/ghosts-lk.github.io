@@ -1,150 +1,143 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../theme/app_theme.dart';
 
-class ContactSection extends StatelessWidget {
+class ContactSection extends StatefulWidget {
   const ContactSection({Key? key}) : super(key: key);
 
   @override
+  State<ContactSection> createState() => _ContactSectionState();
+}
+
+class _ContactSectionState extends State<ContactSection> {
+  bool _isHovered = false;
+  bool _isEmailHovered = false;
+  bool _isPhoneHovered = false;
+
+  Future<void> _launchEmail() async {
+    final Uri emailUri = Uri(
+      scheme: 'mailto',
+      path: 'ghosts.lk@proton.me',
+    );
+
+    if (await canLaunchUrl(emailUri)) {
+      await launchUrl(emailUri);
+    }
+  }
+
+  Future<void> _makePhoneCall() async {
+    final Uri phoneUri = Uri(
+      scheme: 'tel',
+      path: '+94710555055',
+    );
+
+    if (await canLaunchUrl(phoneUri)) {
+      await launchUrl(phoneUri);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final isSmallScreen = MediaQuery.of(context).size.width < 640;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth <= 640;
 
     return Container(
+      width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
-      color: const Color(0xFF1A1A1A),
+      color: AppTheme.darkBackground,
       decoration: const BoxDecoration(
         border: Border(
-          top: BorderSide(
-            color: Color(0xFF33FF33),
-            width: 2,
-          ),
+          top: BorderSide(color: AppTheme.neonGreen, width: 2),
         ),
       ),
       child: Column(
         children: [
-          _buildSectionTitle(context),
+          Text(
+            'Contact Us',
+            style: AppTheme.headingMedium,
+            textAlign: TextAlign.center,
+            semanticsLabel: 'Contact Us',
+          ),
           const SizedBox(height: 40),
-          _buildContactCard(isSmallScreen),
+          MouseRegion(
+            onEnter: (_) => setState(() => _isHovered = true),
+            onExit: (_) => setState(() => _isHovered = false),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 400),
+              curve: Curves.easeOutQuart,
+              constraints: const BoxConstraints(maxWidth: 600),
+              padding: const EdgeInsets.all(35),
+              decoration: _isHovered
+                ? AppTheme.cardHoverDecoration
+                : AppTheme.cardDecoration,
+              transform: _isHovered
+                ? (Matrix4.identity()..translate(0, -8))
+                : Matrix4.identity(),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Email:',
+                        style: TextStyle(
+                          color: AppTheme.neonGreen,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      MouseRegion(
+                        onEnter: (_) => setState(() => _isEmailHovered = true),
+                        onExit: (_) => setState(() => _isEmailHovered = false),
+                        child: GestureDetector(
+                          onTap: _launchEmail,
+                          child: Text(
+                            'ghosts.lk@proton.me',
+                            style: TextStyle(
+                              color: _isEmailHovered ? AppTheme.neonGreen : Colors.white,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Phone:',
+                        style: TextStyle(
+                          color: AppTheme.neonGreen,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      MouseRegion(
+                        onEnter: (_) => setState(() => _isPhoneHovered = true),
+                        onExit: (_) =>  setState(() => _isPhoneHovered = false),
+                        child: GestureDetector(
+                          onTap: _makePhoneCall,
+                          child: Text(
+                            '+94 710 555 055',
+                            style: TextStyle(
+                              color: _isPhoneHovered ? AppTheme.neonGreen : Colors.white,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
-    );
-  }
-
-  Widget _buildSectionTitle(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          'Contact Us',
-          style: Theme.of(context).textTheme.displayMedium,
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 10),
-        Container(
-          width: 100,
-          height: 2,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.transparent,
-                const Color(0xFF33FF33),
-                Colors.transparent,
-              ],
-              stops: const [0.0, 0.5, 1.0],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildContactCard(bool isSmallScreen) {
-    return Container(
-      constraints: const BoxConstraints(maxWidth: 600),
-      padding: const EdgeInsets.all(30),
-      decoration: BoxDecoration(
-        color: const Color(0xFF222222),
-        border: Border.all(
-          color: const Color(0xFF33FF33),
-          width: 1,
-        ),
-      ),
-      child: Stack(
-        children: [
-          // Border effect
-          Positioned(
-            top: 10,
-            left: 10,
-            right: 10,
-            bottom: 10,
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: const Color(0xFF33FF33),
-                  width: 2,
-                ),
-              ),
-            ),
-          ),
-          // Content
-          Column(
-            children: [
-              _buildContactItem(
-                'Email:',
-                'ghosts.lk@proton.me',
-                'mailto:ghosts.lk@proton.me',
-                isSmallScreen,
-              ),
-              const SizedBox(height: 20),
-              _buildContactItem(
-                'Phone:',
-                '+94 710 555 055',
-                'tel:+94710555055',
-                isSmallScreen,
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildContactItem(
-      String label, String value, String url, bool isSmallScreen) {
-    return Flex(
-      direction: isSmallScreen ? Axis.vertical : Axis.horizontal,
-      mainAxisAlignment: isSmallScreen
-          ? MainAxisAlignment.center
-          : MainAxisAlignment.start,
-      crossAxisAlignment:
-          isSmallScreen ? CrossAxisAlignment.center : CrossAxisAlignment.center,
-      children: [
-        Text(
-          label,
-          style: const TextStyle(
-            color: Color(0xFF33FF33),
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        SizedBox(width: isSmallScreen ? 0 : 10, height: isSmallScreen ? 10 : 0),
-        GestureDetector(
-          onTap: () async {
-            final Uri uri = Uri.parse(url);
-            if (await canLaunchUrl(uri)) {
-              await launchUrl(uri);
-            }
-          },
-          child: MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: Text(
-              value,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
