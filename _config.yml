@@ -1,0 +1,20 @@
+# Site settings
+title: Ghost Protocol
+email: ghosts.lk@proton.me
+description: >-
+  Ghost Protocol - Secure. Stealthy. Digital.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .sass-cache
