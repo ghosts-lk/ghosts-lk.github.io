@@ -1,6 +1,0 @@
-# Replace with actual images:
-# - hero-image.jpg (600x600)
-# - security-icon.png (100x100)
-# - speed-icon.png (100x100)
-# - cloud-icon.png (100x100)
-# - favicon.png (32x32)
