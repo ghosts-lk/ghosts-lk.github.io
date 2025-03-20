@@ -1,0 +1,22 @@
+- name: Repair
+  price: 10,000+
+- name: Update and OS installations
+  price: 15,000+
+- name: Virus Removal and Recovery
+  price: 10,000+
+- name: Maintenance and Optimizing
+  price: 10,000+
+- name: Security Assessments
+  price: 20,000+
+- name: Pentests
+  price: 50,000+
+- name: OSINT Reports
+  price: 20,000+
+- name: Web Hosting
+  price: 15,000+
+- name: Website Building
+  price: 60,000+
+- name: App Building
+  price: 60,000+
+- name: UI/UX
+  price: 30,000+
