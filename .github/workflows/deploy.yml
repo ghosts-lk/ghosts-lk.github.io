@@ -28,6 +28,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ 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 }}
+          github_token: ${{ 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 }}
           publish_dir: ./build/web
           force_orphan: true
