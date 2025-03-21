@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Press2P';
+    src: url('/assets/fonts/PressStart2P-Regular.ttf') format('ttf'),
+         url('/assets/fonts/PressStart2P-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Example usage */
+body {
+    font-family: 'Press2P', sans-serif;
+}
