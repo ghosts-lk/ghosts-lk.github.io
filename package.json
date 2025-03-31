@@ -2,7 +2,7 @@
   "name": "ghosts-lk",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://<your-username>.github.io/ghosts-lk.github.io",
+  "homepage": "https://ghosts-lk.github.io/ghosts-lk.github.io",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
