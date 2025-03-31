@@ -10,24 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          flutter-version: "3.10.0"
-          channel: "stable"
+          node-version: 18
 
-      - name: Enable Flutter Web
-        run: flutter config --enable-web
+      - name: Install dependencies
+        run: npm install
 
-      - name: Get dependencies
-        run: flutter pub get
-
-      - name: Build for Web
-        run: flutter build web --release --base-href /ghost_protocol/
+      - name: Build the project
+        run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/web
-          force_orphan: true
+          publish_dir: ./build
