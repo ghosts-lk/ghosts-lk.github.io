@@ -7,6 +7,34 @@ interface ContactFormData {
   message: string
 }
 
+// Rate limiting: Store IP + timestamp
+const rateLimitStore = new Map<string, { count: number; resetTime: number }>()
+
+// Get client IP address
+function getClientIp(request: NextRequest): string {
+  const forwarded = request.headers.get("x-forwarded-for")
+  const ip = forwarded ? forwarded.split(",")[0].trim() : request.headers.get("x-real-ip") || "unknown"
+  return ip
+}
+
+// Check rate limit (5 requests per 1 hour)
+function checkRateLimit(ip: string, maxRequests: number = 5, windowMs: number = 3600000): boolean {
+  const now = Date.now()
+  const existing = rateLimitStore.get(ip)
+
+  if (!existing || now > existing.resetTime) {
+    rateLimitStore.set(ip, { count: 1, resetTime: now + windowMs })
+    return true
+  }
+
+  if (existing.count < maxRequests) {
+    existing.count++
+    return true
+  }
+
+  return false
+}
+
 // Validate email format
 function isValidEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -68,6 +96,18 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Method not allowed" }, { status: 405 })
     }
 
+    // Apply rate limiting
+    const clientIp = getClientIp(request)
+    if (!checkRateLimit(clientIp)) {
+      return NextResponse.json(
+        {
+          error: "Too many requests",
+          message: "You have exceeded the rate limit. Please try again later.",
+        },
+        { status: 429 }
+      )
+    }
+
     // Parse request body
     const data = await request.json()
 
@@ -90,6 +130,7 @@ export async function POST(request: NextRequest) {
       company: formData.company,
       message: formData.message,
       timestamp: new Date().toISOString(),
+      ip: clientIp,
     })
 
     // Example: You could integrate with email service here
