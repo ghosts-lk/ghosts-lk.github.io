@@ -113,27 +113,6 @@ export default async function ProjectPage({ params }: PageProps) {
                   ))}
                 </ul>
               </div>
-
-              {/* Testimonial */}
-              {project.testimonial && (
-                <div className="bg-card/50 border border-border rounded-lg p-8">
-                  <Quote className="h-8 w-8 text-primary/40 mb-4" />
-                  <blockquote className="text-lg text-foreground mb-4 italic leading-relaxed">
-                    "{project.testimonial.quote}"
-                  </blockquote>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                      <span className="text-primary font-semibold text-sm">
-                        {project.testimonial.author.charAt(0)}
-                      </span>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-foreground">{project.testimonial.author}</p>
-                      <p className="text-sm text-muted-foreground">{project.testimonial.role}</p>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
 
             {/* Sidebar */}
