@@ -1,0 +1,24 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Ghost Protocol",
+  "url": "https://ghostprotocol.lk",
+  "logo": "https://ghostprotocol.lk/images/gp.jpg",
+  "description": "Premium IT services and digital solutions based in Sri Lanka",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Colombo",
+    "addressCountry": "LK"
+  },
+  "contact": {
+    "@type": "ContactPoint",
+    "contactType": "Customer Service",
+    "email": "hello@ghostprotocol.lk",
+    "telephone": "+94-11-234-5678"
+  },
+  "sameAs": ["https://twitter.com/ghostprotocol", "https://linkedin.com/company/ghost-protocol"],
+  "serviceArea": {
+    "@type": "Country",
+    "name": "Sri Lanka"
+  }
+}

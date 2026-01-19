@@ -1,0 +1,35 @@
+name: Uptime Monitoring Check
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Check every 5 minutes
+  workflow_dispatch:
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check GitHub Pages availability
+        run: |
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://ghosts-lk.github.io)
+          if [ $HTTP_CODE -eq 200 ]; then
+            echo "✅ Website is UP (HTTP $HTTP_CODE)"
+          else
+            echo "⚠️ Website returned HTTP $HTTP_CODE"
+            exit 1
+          fi
+
+      - name: Check DNS resolution
+        run: |
+          nslookup ghosts-lk.github.io
+          echo "✅ DNS resolution successful"
+
+      - name: Performance test
+        run: |
+          RESPONSE_TIME=$(curl -s -o /dev/null -w "%{time_total}" https://ghosts-lk.github.io)
+          echo "Response time: ${RESPONSE_TIME}s"
+          if (( $(echo "$RESPONSE_TIME < 3.0" | bc -l) )); then
+            echo "✅ Performance OK"
+          else
+            echo "⚠️ Performance warning: Response time > 3 seconds"
+          fi
