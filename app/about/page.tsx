@@ -111,7 +111,7 @@ export default function AboutPage() {
                 fill
                 className="object-cover"
               />
-            ))}
+            </div>
           </div>
         </div>
       </section>
