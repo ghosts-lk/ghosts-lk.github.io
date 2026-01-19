@@ -41,40 +41,18 @@ export default function ContactPageClient() {
     }
 
     try {
-      // Use Resend API directly from client-side with a public key approach
-      // Since we can't use server-side on GitHub Pages, we'll use Resend's email sending
       const resendApiKey = process.env.NEXT_PUBLIC_RESEND_API_KEY
 
       if (!resendApiKey) {
-        // Fallback: Send to mailto and show instructions
-        const mailtoLink = `mailto:ghosts.lk@proton.me?subject=New Contact Form Submission from ${encodeURIComponent(
-          formData.name
-        )}&body=${encodeURIComponent(
-          `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\n\nMessage:\n${formData.message}`
-        )}`
-
-        window.location.href = mailtoLink
-
         setMessage({
-          type: "success",
-          text: "Opening your email client to send the message...",
+          type: "error",
+          text: "Email service is not configured. Please contact us directly at ghosts.lk@proton.me",
         })
-
-        // Reset form after a delay
-        setTimeout(() => {
-          setFormData({
-            name: "",
-            email: "",
-            company: "",
-            message: "",
-            website: "",
-          })
-          setIsLoading(false)
-        }, 1000)
+        setIsLoading(false)
         return
       }
 
-      // If public API key exists, use Resend
+      // Send email via Resend API
       const response = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
@@ -84,21 +62,38 @@ export default function ContactPageClient() {
         body: JSON.stringify({
           from: "noreply@ghostprotocol.lk",
           to: "ghosts.lk@proton.me",
+          reply_to: formData.email,
           subject: `📬 New Contact Form Submission from ${formData.name}`,
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
               <h2>New Contact Form Submission</h2>
-              <p><strong>Name:</strong> ${formData.name}</p>
-              <p><strong>Email:</strong> ${formData.email}</p>
-              ${formData.company ? `<p><strong>Company:</strong> ${formData.company}</p>` : ""}
-              <p><strong>Message:</strong></p>
-              <p style="white-space: pre-wrap;">${formData.message}</p>
-              <hr />
-              <p style="font-size: 12px; color: #666;">Submitted from: ${new Date().toLocaleString()}</p>
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 8px; background: #f5f5f5; border: 1px solid #ddd; font-weight: bold;">Name:</td>
+                  <td style="padding: 8px; border: 1px solid #ddd;">${formData.name}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px; background: #f5f5f5; border: 1px solid #ddd; font-weight: bold;">Email:</td>
+                  <td style="padding: 8px; border: 1px solid #ddd;"><a href="mailto:${formData.email}">${formData.email}</a></td>
+                </tr>
+                ${formData.company ? `
+                <tr>
+                  <td style="padding: 8px; background: #f5f5f5; border: 1px solid #ddd; font-weight: bold;">Company:</td>
+                  <td style="padding: 8px; border: 1px solid #ddd;">${formData.company}</td>
+                </tr>
+                ` : ""}
+                <tr>
+                  <td style="padding: 8px; background: #f5f5f5; border: 1px solid #ddd; font-weight: bold; vertical-align: top;">Message:</td>
+                  <td style="padding: 8px; border: 1px solid #ddd; white-space: pre-wrap;">${formData.message.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</td>
+                </tr>
+              </table>
+              <p style="margin-top: 20px; font-size: 12px; color: #666;">Submitted: ${new Date().toLocaleString()}</p>
             </div>
           `,
         }),
       })
+
+      const data = await response.json()
 
       if (response.ok) {
         setMessage({
@@ -113,17 +108,18 @@ export default function ContactPageClient() {
           website: "",
         })
       } else {
+        console.error("Resend API error:", data)
         setMessage({
           type: "error",
-          text: "Failed to send message. Please try again.",
+          text: data.message || "Failed to send message. Please try again.",
         })
       }
     } catch (error) {
+      console.error("Form submission error:", error)
       setMessage({
         type: "error",
-        text: "An error occurred. Please try again later.",
+        text: "Network error. Please check your connection and try again.",
       })
-      console.error("Form submission error:", error)
     } finally {
       setIsLoading(false)
     }
