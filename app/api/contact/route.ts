@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from "next/server"
+import { sendUserConfirmationEmail, sendAdminNotificationEmail } from "@/lib/email"
+import { logSubmission, logError, logWarn } from "@/lib/logger"
 
 interface ContactFormData {
   name: string
   email: string
-  company: string
+  company?: string
   message: string
 }
 
@@ -91,14 +93,10 @@ function validateFormData(data: unknown): { valid: boolean; errors: string[] } {
 
 export async function POST(request: NextRequest) {
   try {
-    // Check request method
-    if (request.method !== "POST") {
-      return NextResponse.json({ error: "Method not allowed" }, { status: 405 })
-    }
-
     // Apply rate limiting
     const clientIp = getClientIp(request)
     if (!checkRateLimit(clientIp)) {
+      logWarn(`Rate limit exceeded for IP: ${clientIp}`)
       return NextResponse.json(
         {
           error: "Too many requests",
@@ -114,6 +112,7 @@ export async function POST(request: NextRequest) {
     // Validate form data
     const { valid, errors } = validateFormData(data)
     if (!valid) {
+      logError(new Error(`Validation failed: ${errors.join(", ")}`), "ContactForm")
       return NextResponse.json(
         { error: "Validation failed", details: errors },
         { status: 400 }
@@ -122,23 +121,37 @@ export async function POST(request: NextRequest) {
 
     const formData = data as ContactFormData
 
-    // TODO: Send email or store in database
-    // For now, we'll just log the submission
-    console.log("Contact form submission:", {
+    // Log submission to file
+    logSubmission({
       name: formData.name,
       email: formData.email,
       company: formData.company,
       message: formData.message,
-      timestamp: new Date().toISOString(),
       ip: clientIp,
     })
 
-    // Example: You could integrate with email service here
-    // await sendEmail({
-    //   to: 'ghosts.lk@proton.me',
-    //   subject: `New contact form submission from ${formData.name}`,
-    //   html: `...`
-    // })
+    // Send user confirmation email
+    const userEmailResult = await sendUserConfirmationEmail(formData.email, formData.name)
+    if (userEmailResult.success) {
+      console.log(`✓ User confirmation email sent to ${formData.email}`)
+    } else {
+      console.warn(`⚠ Failed to send user confirmation email: ${userEmailResult.error}`)
+    }
+
+    // Send admin notification email
+    const adminEmailResult = await sendAdminNotificationEmail({
+      name: formData.name,
+      email: formData.email,
+      company: formData.company,
+      message: formData.message,
+      clientIp,
+    })
+
+    if (adminEmailResult.success) {
+      console.log(`✓ Admin notification email sent`)
+    } else {
+      console.warn(`⚠ Failed to send admin notification: ${adminEmailResult.error}`)
+    }
 
     return NextResponse.json(
       {
@@ -148,7 +161,7 @@ export async function POST(request: NextRequest) {
       { status: 200 }
     )
   } catch (error) {
-    console.error("Contact form error:", error)
+    logError(error, "ContactForm")
 
     return NextResponse.json(
       {
