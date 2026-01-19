@@ -8,10 +8,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  eslint: {
-    // Allow ESLint errors in production builds to catch issues early
-    ignoreDuringBuilds: false,
-  },
 }
 
 export default nextConfig
