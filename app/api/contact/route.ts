@@ -7,6 +7,8 @@ interface ContactFormData {
   email: string
   company?: string
   message: string
+  /** Honeypot field - should always be empty (spam prevention) */
+  website?: string
 }
 
 // Rate limiting: Store IP + timestamp
@@ -52,6 +54,12 @@ function validateFormData(data: unknown): { valid: boolean; errors: string[] } {
   }
 
   const formData = data as Partial<ContactFormData>
+
+  // Honeypot check (spam prevention) - website field should be empty
+  if (formData.website && typeof formData.website === "string" && formData.website.trim().length > 0) {
+    // Silently reject spam bots without revealing why
+    return { valid: false, errors: ["Invalid submission"] }
+  }
 
   // Validate name
   if (!formData.name || typeof formData.name !== "string") {
@@ -173,14 +181,28 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Handle OPTIONS for CORS
+// Handle OPTIONS for CORS - Restrict to your domain for security
 export async function OPTIONS(request: NextRequest) {
+  const origin = request.headers.get("origin") || ""
+  const allowedOrigins = [
+    "https://ghosts-lk.com",
+    "https://ghosts-lk.github.io",
+    "https://www.ghosts-lk.com",
+    ...(process.env.NODE_ENV === "development" ? ["http://localhost:3000"] : []),
+  ]
+
+  const isAllowedOrigin = allowedOrigins.some((allowed) =>
+    origin.toLowerCase() === allowed.toLowerCase()
+  )
+
   return new NextResponse(null, {
     status: 200,
     headers: {
-      "Access-Control-Allow-Origin": "*",
+      // Only allow same-origin or explicitly allowed domains
+      "Access-Control-Allow-Origin": isAllowedOrigin ? origin : allowedOrigins[0],
       "Access-Control-Allow-Methods": "POST, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Max-Age": "86400", // 24 hours
     },
   })
 }

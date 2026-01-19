@@ -1,6 +1,12 @@
 /**
  * Email utility using Resend for sending emails
  * Requires RESEND_API_KEY environment variable
+ * 
+ * SECURITY NOTES:
+ * - API key is stored in .env.local (not committed to git)
+ * - Never log or expose API key
+ * - All emails are sent from noreply@ghostprotocol.lk (no-reply address)
+ * - Email validation prevents invalid addresses
  */
 
 import { Resend } from 'resend'
