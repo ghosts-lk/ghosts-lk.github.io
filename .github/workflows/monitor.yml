@@ -28,7 +28,7 @@ jobs:
         run: |
           RESPONSE_TIME=$(curl -s -o /dev/null -w "%{time_total}" https://ghosts-lk.github.io)
           echo "Response time: ${RESPONSE_TIME}s"
-          if (( $(echo "$RESPONSE_TIME < 3.0" | bc -l) )); then
+          if awk -v rt="$RESPONSE_TIME" 'BEGIN { exit !(rt < 3.0) }'; then
             echo "✅ Performance OK"
           else
             echo "⚠️ Performance warning: Response time > 3 seconds"

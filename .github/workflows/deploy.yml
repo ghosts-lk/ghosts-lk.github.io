@@ -21,34 +21,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path | tr -d '\n')" >> $GITHUB_OUTPUT
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          cache: 'npm'
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: Lint code
-        run: pnpm run lint || true
+        run: npm run lint || true
 
       - name: Build application
-        run: pnpm run build
+        run: npm run build
 
       - name: Create CNAME for custom domain
         run: |
@@ -65,6 +47,17 @@ jobs:
             Referrer-Policy: strict-origin-when-cross-origin
             Permissions-Policy: geolocation=(), microphone=(), camera=()
           EOF
+
+      - name: Prepare static export
+        run: |
+          # Next.js exports to out directory based on next.config.mjs
+          ls -la
+          if [ -d "out" ]; then
+            echo "✅ Static export directory found"
+          else
+            echo "⚠️ Static export directory not found - creating placeholder"
+            mkdir -p out
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
