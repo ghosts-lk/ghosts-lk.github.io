@@ -111,7 +111,7 @@ export default function AboutPage() {
                 fill
                 className="object-cover"
               />
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -205,34 +205,18 @@ export default function AboutPage() {
       <section className="py-16 px-6 bg-card/30">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <Target className="h-6 w-6 text-primary" />
-                <span className="text-4xl font-bold text-primary">{companyStats.projectsCompleted}</span>
+            {companyStats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  {index === 0 && <Target className="h-6 w-6 text-primary" />}
+                  {index === 1 && <Building2 className="h-6 w-6 text-primary" />}
+                  {index === 2 && <Users className="h-6 w-6 text-primary" />}
+                  {index === 3 && <Zap className="h-6 w-6 text-primary" />}
+                  <span className="text-4xl font-bold text-primary">{stat.value}</span>
+                </div>
+                <p className="text-muted-foreground">{stat.label}</p>
               </div>
-              <p className="text-muted-foreground">Projects Delivered</p>
-            </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <Users className="h-6 w-6 text-primary" />
-                <span className="text-4xl font-bold text-primary">{companyStats.repeatClientRate}</span>
-              </div>
-              <p className="text-muted-foreground">Repeat Clients</p>
-            </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <Building2 className="h-6 w-6 text-primary" />
-                <span className="text-4xl font-bold text-primary">{companyStats.yearsInBusiness}</span>
-              </div>
-              <p className="text-muted-foreground">Years in Business</p>
-            </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <Zap className="h-6 w-6 text-primary" />
-                <span className="text-4xl font-bold text-primary">{companyStats.averageResponseTime}</span>
-              </div>
-              <p className="text-muted-foreground">Response Time</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
