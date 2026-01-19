@@ -11,8 +11,6 @@
 
 import { Resend } from 'resend'
 
-let resend: Resend | null = null
-
 /**
  * Get Resend client instance
  */
@@ -22,11 +20,8 @@ function getResendClient(): Resend | null {
     return null
   }
 
-  if (!resend) {
-    resend = new Resend(process.env.RESEND_API_KEY)
-  }
-
-  return resend
+  // Create new instance each time (v6+ doesn't maintain singleton)
+  return new Resend(process.env.RESEND_API_KEY)
 }
 
 interface SendEmailOptions {

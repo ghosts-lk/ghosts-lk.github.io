@@ -1,11 +1,74 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, Phone, MapPin, Clock } from "lucide-react"
 
 export default function ContactPageClient() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    message: "",
+    website: "", // honeypot field
+  })
+  const [isLoading, setIsLoading] = useState(false)
+  const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { id, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [id]: value,
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsLoading(true)
+    setMessage(null)
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (response.ok) {
+        setMessage({
+          type: "success",
+          text: "Message sent successfully! We'll get back to you soon.",
+        })
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          message: "",
+          website: "",
+        })
+      } else {
+        setMessage({
+          type: "error",
+          text: result.message || "Failed to send message. Please try again.",
+        })
+      }
+    } catch (error) {
+      setMessage({
+        type: "error",
+        text: "An error occurred. Please try again later.",
+      })
+      console.error("Form submission error:", error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -76,51 +139,64 @@ export default function ContactPageClient() {
 
             {/* Contact Form */}
             <div className="md:col-span-2">
-              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                {message && (
+                  <div
+                    className={`p-4 rounded-lg ${
+                      message.type === "success"
+                        ? "bg-green-50 border border-green-200 text-green-800"
+                        : "bg-red-50 border border-red-200 text-red-800"
+                    }`}
+                  >
+                    {message.text}
+                  </div>
+                )}
+
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                       Your Name
                     </label>
-                    <Input id="name" placeholder="John Doe" className="bg-card border-border" />
+                    <Input
+                      id="name"
+                      placeholder="John Doe"
+                      className="bg-card border-border"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                    />
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                       Email Address
                     </label>
-                    <Input id="email" type="email" placeholder="john@example.com" className="bg-card border-border" />
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="john@example.com"
+                      className="bg-card border-border"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                    />
                   </div>
-                </div>
-
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                    Phone Number
-                  </label>
-                  <Input id="phone" type="tel" placeholder="+94 (0) 11 234 5678" className="bg-card border-border" />
                 </div>
 
                 <div>
                   <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
                     Company Name
                   </label>
-                  <Input id="company" placeholder="Your Company" className="bg-card border-border" />
+                  <Input
+                    id="company"
+                    placeholder="Your Company"
+                    className="bg-card border-border"
+                    value={formData.company}
+                    onChange={handleInputChange}
+                  />
                 </div>
 
-                <div>
-                  <label htmlFor="service" className="block text-sm font-medium text-foreground mb-2">
-                    Service Interested In
-                  </label>
-                  <select className="w-full px-3 py-2 rounded-md bg-card border border-border text-foreground">
-                    <option value="">Select a service</option>
-                    <option value="web-dev">Web Development</option>
-                    <option value="software-dev">Software Development</option>
-                    <option value="design">Creative Design</option>
-                    <option value="troubleshooting">IT Troubleshooting</option>
-                    <option value="setup">System Setup</option>
-                    <option value="maintenance">Maintenance & Support</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
+                {/* Honeypot field - hidden from users, for spam detection */}
+                <input type="hidden" id="website" value={formData.website} onChange={handleInputChange} />
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
@@ -130,11 +206,19 @@ export default function ContactPageClient() {
                     id="message"
                     placeholder="Tell us about your project..."
                     className="bg-card border-border min-h-32"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
                   />
                 </div>
 
-                <Button size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                  Send Message
+                <Button
+                  size="lg"
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                  type="submit"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </div>
