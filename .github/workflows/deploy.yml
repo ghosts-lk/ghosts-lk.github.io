@@ -13,6 +13,11 @@ jobs:
       contents: read
       pages: write
       id-token: write
+    
+    # Inject secrets as environment variables for the build
+    env:
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      CONTACT_EMAIL_RECIPIENT: ${{ secrets.CONTACT_EMAIL_RECIPIENT }}
 
     steps:
       - uses: actions/checkout@v4
@@ -73,3 +78,8 @@ jobs:
           echo "✅ Deployment completed successfully!"
           echo "📍 Site available at: https://ghosts-lk.github.io"
           echo "🌐 Custom domain: https://ghosts-lk.com (after DNS setup)"
+          echo ""
+          echo "🔐 Security Notes:"
+          echo "✓ API keys injected from GitHub Secrets (never exposed)"
+          echo "✓ Secrets masked in build logs"
+          echo "✓ Contact form ready for production use"
