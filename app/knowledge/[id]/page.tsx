@@ -130,117 +130,177 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
               </div>
             </header>
 
-            {/* Article Content with Professional Styling */}
+            {/* Article Content with Professional Styling - Consistent with Site Design */}
             <style>{`
               .article-content h2 {
                 font-size: 1.875rem;
                 font-weight: 700;
                 margin-top: 3rem;
-                margin-bottom: 1.25rem;
-                padding-bottom: 0.75rem;
-                border-bottom: 2px solid rgba(var(--primary), 0.2);
-                background: linear-gradient(to right, rgba(var(--primary), 0.05), transparent);
-                padding-left: 0.75rem;
-                padding-right: 0.75rem;
+                margin-bottom: 1.5rem;
+                padding-bottom: 1rem;
+                border-bottom: 2px solid rgba(var(--primary), 0.3);
+                background: linear-gradient(to right, rgba(var(--primary), 0.08), transparent);
+                padding-left: 1rem;
+                padding-right: 1rem;
                 padding-top: 0.5rem;
-                border-radius: 0.25rem;
+                border-radius: 0.375rem;
                 color: rgb(var(--foreground));
+                letter-spacing: -0.5px;
               }
               
               .article-content h3 {
                 font-size: 1.5rem;
-                font-weight: 600;
-                margin-top: 2.75rem;
-                margin-bottom: 1rem;
-                color: rgba(var(--foreground), 0.9);
+                font-weight: 700;
+                margin-top: 2.5rem;
+                margin-bottom: 1.25rem;
+                color: rgb(var(--foreground));
+                letter-spacing: -0.3px;
               }
               
               .article-content h4 {
-                font-size: 1.125rem;
+                font-size: 1.25rem;
                 font-weight: 600;
                 margin-top: 2rem;
-                margin-bottom: 0.75rem;
-                color: rgba(var(--foreground), 0.85);
+                margin-bottom: 1rem;
+                color: rgb(var(--foreground));
               }
               
               .article-content p {
-                text-align: justify;
-                margin-bottom: 1.5rem;
-                line-height: 1.75;
+                margin-bottom: 1.75rem;
+                line-height: 1.8;
                 color: rgb(var(--muted-foreground));
+                font-size: 1rem;
+                letter-spacing: 0.3px;
               }
               
               .article-content .lead {
-                font-size: 1.25rem;
+                font-size: 1.125rem;
                 font-weight: 500;
-                line-height: 1.75;
+                line-height: 1.8;
                 margin-bottom: 2rem;
                 color: rgb(var(--foreground));
               }
               
               .article-content ul, .article-content ol {
-                margin-top: 2rem;
+                margin-top: 1.5rem;
                 margin-bottom: 2rem;
-                padding-left: 1.5rem;
+                padding-left: 2rem;
+                list-style-position: outside;
               }
               
-              .article-content li {
-                margin-bottom: 0.5rem;
-                line-height: 1.75;
+              .article-content ul li {
+                margin-bottom: 1rem;
+                line-height: 1.8;
                 color: rgb(var(--muted-foreground));
+                font-size: 1rem;
+                padding-left: 0.5rem;
+              }
+              
+              .article-content ul li::marker {
+                color: rgb(var(--primary));
+                font-weight: 600;
+              }
+              
+              .article-content ol {
+                counter-reset: list-counter;
+                list-style: none;
+                padding-left: 0;
+              }
+              
+              .article-content ol li {
+                counter-increment: list-counter;
+                margin-bottom: 1rem;
+                line-height: 1.8;
+                color: rgb(var(--muted-foreground));
+                font-size: 1rem;
+                display: flex;
+                align-items: flex-start;
+              }
+              
+              .article-content ol li::before {
+                content: counter(list-counter);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 1.75rem;
+                height: 1.75rem;
+                margin-right: 1rem;
+                background: rgba(var(--primary), 0.1);
+                color: rgb(var(--primary));
+                font-weight: 600;
+                border-radius: 0.375rem;
+                font-size: 0.875rem;
+                flex-shrink: 0;
               }
               
               .article-content strong {
-                font-weight: 600;
+                font-weight: 700;
                 color: rgb(var(--foreground));
               }
               
               .article-content a {
                 color: rgb(var(--primary));
                 text-decoration: none;
-                transition: color 0.2s;
+                transition: all 0.2s ease;
+                font-weight: 500;
+                border-bottom: 1px solid rgba(var(--primary), 0.2);
               }
               
               .article-content a:hover {
-                text-decoration: underline;
+                border-bottom: 1px solid rgb(var(--primary));
               }
               
               .article-content code {
-                background-color: rgba(var(--secondary), 0.5);
-                color: rgba(var(--primary), 0.9);
-                padding: 0.25rem 0.5rem;
+                background-color: rgba(var(--primary), 0.08);
+                color: rgb(var(--primary));
+                padding: 0.25rem 0.6rem;
                 border-radius: 0.375rem;
                 font-family: 'Monaco', 'Courier New', monospace;
                 font-size: 0.875rem;
+                font-weight: 500;
               }
               
               .article-content blockquote {
-                border-left: 4px solid rgba(var(--primary), 0.4);
-                padding-left: 1rem;
+                border-left: 4px solid rgb(var(--primary));
+                padding: 1rem 1.5rem;
+                background: rgba(var(--primary), 0.05);
                 font-style: italic;
-                color: rgba(var(--muted-foreground), 0.8);
-                margin: 1.5rem 0;
+                color: rgb(var(--muted-foreground));
+                margin: 2rem 0;
+                border-radius: 0.375rem;
               }
               
               .article-content table {
                 width: 100%;
                 border-collapse: collapse;
                 margin: 2rem 0;
-                font-size: 0.875rem;
+                font-size: 0.95rem;
+                border: 1px solid rgba(var(--border), 0.3);
+                border-radius: 0.5rem;
+                overflow: hidden;
               }
               
               .article-content th {
-                background-color: rgba(var(--secondary), 0.5);
-                border-bottom: 1px solid rgba(var(--border), 0.3);
-                padding: 0.75rem;
+                background: linear-gradient(to right, rgba(var(--primary), 0.12), rgba(var(--primary), 0.05));
+                border-bottom: 2px solid rgba(var(--primary), 0.3);
+                padding: 1rem;
                 text-align: left;
-                font-weight: 600;
+                font-weight: 700;
                 color: rgb(var(--foreground));
               }
               
               .article-content td {
                 border-bottom: 1px solid rgba(var(--border), 0.2);
-                padding: 0.75rem;
+                padding: 0.875rem 1rem;
+                color: rgb(var(--muted-foreground));
+              }
+              
+              .article-content tr:last-child td {
+                border-bottom: none;
+              }
+              
+              .article-content tr:hover {
+                background-color: rgba(var(--primary), 0.02);
               }
             `}</style>
 
