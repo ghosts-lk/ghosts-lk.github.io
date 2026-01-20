@@ -85,7 +85,7 @@ Ghost Protocol is a professional web presence showcasing expertise in:
 - Challenge/Solution/Results narrative
 
 ### 📱 Contact System
-- ✅ **Fully Functional Contact Form** - Send messages via Resend email service
+- ✅ **Fully Functional Contact Form** - Send messages via Formspree (zero-setup)
 - ✅ **Client-Side Submission** - Direct API calls for static hosting compatibility
 - ✅ **Form Validation** - Required fields, email format, length validation
 - ✅ **Spam Prevention** - Honeypot field + rate limiting (5 requests/hour/IP)
@@ -242,18 +242,7 @@ ghosts-lk.github.io/
 
 ### Environment Setup
 
-Create a `.env.local` file in the project root:
-
-```env
-# Resend Email Service (Get free account at https://resend.com)
-# This is used for sending contact form submissions
-NEXT_PUBLIC_RESEND_API_KEY=your_resend_api_key_here
-
-# Contact Form Configuration
-CONTACT_EMAIL_RECIPIENT=ghosts.lk@proton.me
-```
-
-**Note:** The API key is prefixed with `NEXT_PUBLIC_` which means it's embedded in the frontend bundle. This is acceptable because Resend keys are rate-limited and designed for client-side use.
+No environment setup required! Formspree is zero-configuration. The contact form works out of the box on any domain.
 
 ---
 
@@ -337,14 +326,14 @@ The contact form is a fully functional, production-ready feature that allows use
 
 **Location:** `/contact` page
 **Recipient Email:** `ghosts.lk@proton.me`
-**Email Service:** Resend (https://resend.com)
+**Email Service:** Formspree (https://formspree.io) - CORS-enabled, zero-setup
 
 ### How It Works
 
 1. **User submits form** with Name, Email, and Message
 2. **Client-side validation** checks all required fields
 3. **Honeypot check** detects spam bots (hidden website field)
-4. **API call** sends submission to Resend email service
+4. **Direct POST** sends data to Formspree endpoint (CORS-enabled)
 5. **Email sent** to recipient with all submission details
 6. **User feedback** shows success/error message
 
@@ -399,18 +388,17 @@ Recipients receive a beautifully formatted email containing:
 **Files:**
 - `app/contact/page.tsx` - Server component, handles metadata
 - `app/contact/client-page.tsx` - Client component, form logic
-- `.github/workflows/deploy.yml` - Resend API key injection
 
-**API Endpoint:**
-- `https://api.resend.com/emails` (POST)
-- Authentication: Bearer token (Resend API key)
-- From: `onboarding@resend.dev` (Resend default domain)
+**Service:**
+- Formspree endpoint: `https://formspree.io/f/[FORM_ID]`
+- No authentication needed (form ID is the only identifier)
+- CORS-enabled for browser requests
+- Automatically forwards emails to configured recipient
 
 **Error Handling:**
-- Missing API key: Shows configuration error
 - Network failure: Shows network error with details
 - Invalid submission: Shows validation errors
-- API error: Shows specific error from Resend
+- Formspree error: Shows specific error message
 
 ---
 
