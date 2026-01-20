@@ -23,11 +23,6 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Create .env.local for build
-        run: |
-          echo "NEXT_PUBLIC_RESEND_API_KEY=re_aE1VPEzR_F2TUFz4NhcSyoeNEhxwCdEaM" > .env.local
-          echo "CONTACT_EMAIL_RECIPIENT=ghosts.lk@proton.me" >> .env.local
-
       - name: Install dependencies
         run: npm ci
 
@@ -79,7 +74,7 @@ jobs:
           echo "📍 Site available at: https://ghosts-lk.github.io"
           echo "🌐 Custom domain: https://ghosts-lk.com (after DNS setup)"
           echo ""
-          echo "🔐 Security Notes:"
-          echo "✓ API key injected from GitHub Secrets (never exposed in logs)"
-          echo "✓ Secrets masked in build logs"
-          echo "✓ Contact form sends emails via Resend API"
+          echo "� Contact Form:"
+          echo "✓ Powered by Formspree (free tier, no API key needed)"
+          echo "✓ CORS-enabled for static sites"
+          echo "✓ Emails sent to: ghosts.lk@proton.me"

@@ -41,55 +41,20 @@ export default function ContactPageClient() {
     }
 
     try {
-      const resendApiKey = process.env.NEXT_PUBLIC_RESEND_API_KEY
+      // Formspree handles email delivery - no API key needed for client-side
+      // Emails are sent to ghosts.lk@proton.me
 
-      if (!resendApiKey) {
-        setMessage({
-          type: "error",
-          text: "Email service is not configured. Please contact us directly at ghosts.lk@proton.me",
-        })
-        setIsLoading(false)
-        return
-      }
-
-      // Send email via Resend API
-      const response = await fetch("https://api.resend.com/emails", {
+      const response = await fetch("https://formspree.io/f/xyzjpwab", {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${resendApiKey}`,
+          "Accept": "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          from: "onboarding@resend.dev",
-          to: "ghosts.lk@proton.me",
-          reply_to: formData.email,
-          subject: `📬 New Contact Form Submission from ${formData.name}`,
-          html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-              <h2>New Contact Form Submission</h2>
-              <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                  <td style="padding: 8px; background: #f5f5f5; border: 1px solid #ddd; font-weight: bold;">Name:</td>
-                  <td style="padding: 8px; border: 1px solid #ddd;">${formData.name}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 8px; background: #f5f5f5; border: 1px solid #ddd; font-weight: bold;">Email:</td>
-                  <td style="padding: 8px; border: 1px solid #ddd;"><a href="mailto:${formData.email}">${formData.email}</a></td>
-                </tr>
-                ${formData.company ? `
-                <tr>
-                  <td style="padding: 8px; background: #f5f5f5; border: 1px solid #ddd; font-weight: bold;">Company:</td>
-                  <td style="padding: 8px; border: 1px solid #ddd;">${formData.company}</td>
-                </tr>
-                ` : ""}
-                <tr>
-                  <td style="padding: 8px; background: #f5f5f5; border: 1px solid #ddd; font-weight: bold; vertical-align: top;">Message:</td>
-                  <td style="padding: 8px; border: 1px solid #ddd; white-space: pre-wrap;">${formData.message.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</td>
-                </tr>
-              </table>
-              <p style="margin-top: 20px; font-size: 12px; color: #666;">Submitted: ${new Date().toLocaleString()}</p>
-            </div>
-          `,
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          message: formData.message,
         }),
       })
 
@@ -108,10 +73,10 @@ export default function ContactPageClient() {
           website: "",
         })
       } else {
-        console.error("Resend API error:", data)
+        console.error("Form submission error:", data)
         setMessage({
           type: "error",
-          text: data.message || "Failed to send message. Please try again.",
+          text: data.error || "Failed to send message. Please try again.",
         })
       }
     } catch (error) {
