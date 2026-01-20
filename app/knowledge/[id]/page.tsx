@@ -74,7 +74,7 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
               {article.category}
             </Link>
             <ChevronRight className="h-4 w-4" />
-            <span className="text-foreground truncate max-w-[200px]">{article.title}</span>
+            <span className="text-foreground truncate max-w-50">{article.title}</span>
           </nav>
         </div>
       </div>
@@ -410,7 +410,7 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
       </div>
 
       {/* More Articles */}
-      <section className="py-24 px-6 bg-gradient-to-br from-card/40 to-card/20 border-t border-border">
+      <section className="py-24 px-6 bg-linear-to-br from-card/40 to-card/20 border-t border-border">
         <div className="container mx-auto">
           <div className="mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Continue Learning</h2>
@@ -424,7 +424,7 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
                 <Link key={a.id} href={`/knowledge/${a.id}`}>
                   <Card className="h-full border border-border hover:border-primary/50 transition-all cursor-pointer group hover:shadow-lg overflow-hidden">
                     {a.image && (
-                      <div className="relative h-32 bg-gradient-to-br from-primary/10 to-primary/5 overflow-hidden">
+                      <div className="relative h-32 bg-linear-to-br from-primary/10 to-primary/5 overflow-hidden">
                         <img
                           src={a.image || "/placeholder.svg"}
                           alt={a.title}

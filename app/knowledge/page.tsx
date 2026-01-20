@@ -116,21 +116,13 @@ export default function KnowledgeBasePage() {
               <p className="text-lg text-muted-foreground mt-2">Essential reading for technology professionals</p>
             </div>
           </div>
-          <div className="grid lg:grid-cols-3 gap-8">
-            {featuredArticles.map((article, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredArticles.map((article) => (
               <Link key={article.id} href={`/knowledge/${article.id}`}>
-                <Card
-                  className={`h-full border transition-all cursor-pointer group overflow-hidden hover:shadow-lg ${
-                    index === 0
-                      ? "lg:col-span-2 lg:row-span-2 border-primary/40 shadow-md"
-                      : "border-border hover:border-primary/50"
-                  }`}
-                >
-                  {/* Image Section */}
+                <Card className="h-full border border-border hover:border-primary/50 transition-all cursor-pointer group overflow-hidden hover:shadow-lg">
+                  {/* Image Section - Uniform height */}
                   {article.image && (
-                    <div className={`relative bg-gradient-to-br from-primary/10 to-primary/5 overflow-hidden ${
-                      index === 0 ? "h-64" : "h-40"
-                    }`}>
+                    <div className="relative bg-linear-to-br from-primary/10 to-primary/5 overflow-hidden h-40">
                       <img
                         src={article.image || "/placeholder.svg"}
                         alt={article.title}
@@ -139,40 +131,32 @@ export default function KnowledgeBasePage() {
                     </div>
                   )}
                   
-                  <CardHeader className={index === 0 ? "pb-4 pt-8" : "pb-2"}>
-                    <div className="flex items-center gap-3 mb-4">
-                      <Badge className={`transition-colors ${
-                        index === 0
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-primary/10 text-primary hover:bg-primary/20"
-                      }`}>
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center gap-3 mb-3">
+                      <Badge className="bg-primary/10 text-primary hover:bg-primary/20 transition-colors text-xs">
                         {article.category}
                       </Badge>
                       {article.subcategory && (
                         <span className="text-xs text-muted-foreground bg-muted/50 px-2 py-1 rounded">{article.subcategory}</span>
                       )}
                     </div>
-                    <CardTitle
-                      className={`text-foreground group-hover:text-primary transition-colors leading-tight ${
-                        index === 0 ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"
-                      }`}
-                    >
+                    <CardTitle className="text-lg md:text-xl font-bold text-foreground group-hover:text-primary transition-colors leading-tight line-clamp-2">
                       {article.title}
                     </CardTitle>
-                    <CardDescription className={`${index === 0 ? "text-base mt-4" : "text-sm mt-2"} line-clamp-3`}>
+                    <CardDescription className="text-sm mt-2 line-clamp-2">
                       {article.excerpt}
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="pt-4">
-                    <div className="flex items-center justify-between text-sm text-muted-foreground border-t border-border/40 pt-4">
-                      <div className="flex items-center gap-4">
-                        <span className="font-semibold">{article.author}</span>
-                        <span className="flex items-center gap-1.5 bg-muted/40 px-2 py-1 rounded text-xs">
-                          <Clock className="h-3.5 w-3.5" />
+                  <CardContent className="pt-3 pb-4">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground border-t border-border/40 pt-3">
+                      <div className="flex items-center gap-2">
+                        <span className="font-medium line-clamp-1">{article.author}</span>
+                        <span className="flex items-center gap-1 bg-muted/40 px-2 py-1 rounded">
+                          <Clock className="h-3 w-3" />
                           {article.readTime}
                         </span>
                       </div>
-                      <ArrowRight className="h-5 w-5 text-primary opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                      <ArrowRight className="h-4 w-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                     </div>
                   </CardContent>
                 </Card>
@@ -221,7 +205,7 @@ export default function KnowledgeBasePage() {
                           <span>{new Date(article.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
                         </div>
                       </div>
-                      <div className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-primary/10 text-primary opacity-0 group-hover:opacity-100 transition-all duration-200 flex-shrink-0">
+                      <div className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-primary/10 text-primary opacity-0 group-hover:opacity-100 transition-all duration-200 shrink-0">
                         <ArrowRight className="h-4.5 w-4.5" />
                       </div>
                     </div>
