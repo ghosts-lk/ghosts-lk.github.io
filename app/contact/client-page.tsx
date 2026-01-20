@@ -6,6 +6,23 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, Phone, MapPin, Clock } from "lucide-react"
 
+// EmailJS initialization - Public key for client-side
+const EMAILJS_PUBLIC_KEY = "AKb_lL5R8P4p8Jq2eW3zA"
+const EMAILJS_SERVICE_ID = "service_contact_form"
+const EMAILJS_TEMPLATE_ID = "template_contact_form"
+
+// Load EmailJS SDK
+if (typeof window !== "undefined") {
+  const script = document.createElement("script")
+  script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"
+  script.onload = () => {
+    if (window.emailjs) {
+      window.emailjs.init(EMAILJS_PUBLIC_KEY)
+    }
+  }
+  document.head.appendChild(script)
+}
+
 export default function ContactPageClient() {
   const [formData, setFormData] = useState({
     name: "",
@@ -41,26 +58,30 @@ export default function ContactPageClient() {
     }
 
     try {
-      // Formspree handles email delivery - no API key needed for client-side
-      // Emails are sent to ghosts.lk@proton.me
+      // Send via EmailJS - free, no backend needed
+      if (!window.emailjs) {
+        setMessage({
+          type: "error",
+          text: "Email service is loading. Please try again in a moment.",
+        })
+        setIsLoading(false)
+        return
+      }
 
-      const response = await fetch("https://formspree.io/f/xyzjpwab", {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
+      const response = await window.emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          to_email: "ghosts.lk@proton.me",
+          from_email: formData.email,
+          from_name: formData.name,
+          company: formData.company || "Not specified",
           message: formData.message,
-        }),
-      })
+          reply_to: formData.email,
+        }
+      )
 
-      const data = await response.json()
-
-      if (response.ok) {
+      if (response.status === 200) {
         setMessage({
           type: "success",
           text: "Message sent successfully! We'll get back to you soon.",
@@ -73,10 +94,9 @@ export default function ContactPageClient() {
           website: "",
         })
       } else {
-        console.error("Form submission error:", data)
         setMessage({
           type: "error",
-          text: data.error || "Failed to send message. Please try again.",
+          text: "Failed to send message. Please try again.",
         })
       }
     } catch (error) {
