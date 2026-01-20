@@ -288,11 +288,11 @@ export default function ContactPageClient() {
               },
               {
                 q: "How are project fees structured?",
-                a: "Our pricing model is customized to reflect the specific scope, technical complexity, and resource requirements of your project. We provide competitive, transparent quotes that align with your business objectives and timeline. For a detailed cost assessment and formal proposal, please contact us at +94 77 106 2770 or ghosts.lk@proton.me.",
+                a: "Our pricing model is customized to reflect the specific scope, technical complexity, and resource requirements of your project. We provide competitive, transparent quotes that align with your business objectives and timeline. For a detailed cost assessment and formal proposal, please contact us.",
               },
               {
                 q: "Do you offer hosting infrastructure and ongoing maintenance services?",
-                a: "Yes. We provide comprehensive hosting solutions, infrastructure management, security updates, and scheduled maintenance services. We will work with you to identify the optimal hosting configuration and support tier that meets your operational requirements. Contact us at +94 77 106 2770 to discuss your specific hosting and maintenance needs.",
+                a: "Yes. We provide comprehensive hosting solutions, infrastructure management, security updates, and scheduled maintenance services. We will work with you to identify the optimal hosting configuration and support tier that meets your operational requirements. Contact us to discuss your specific hosting and maintenance needs.",
               },
               {
                 q: "Do you provide assessment and migration services for existing platforms?",
