@@ -120,9 +120,9 @@ export default function KnowledgeBasePage() {
             {featuredArticles.map((article) => (
               <Link key={article.id} href={`/knowledge/${article.id}`}>
                 <Card className="h-full border border-border hover:border-primary/50 transition-all cursor-pointer group overflow-hidden hover:shadow-lg">
-                  {/* Image Section - Uniform height */}
+                  {/* Image Section - Uniform height and aspect ratio */}
                   {article.image && (
-                    <div className="relative bg-linear-to-br from-primary/10 to-primary/5 overflow-hidden h-40">
+                    <div className="relative bg-linear-to-br from-primary/10 to-primary/5 overflow-hidden h-40 aspect-video">
                       <img
                         src={article.image || "/placeholder.svg"}
                         alt={article.title}

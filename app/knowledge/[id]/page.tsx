@@ -424,7 +424,7 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
                 <Link key={a.id} href={`/knowledge/${a.id}`}>
                   <Card className="h-full border border-border hover:border-primary/50 transition-all cursor-pointer group hover:shadow-lg overflow-hidden">
                     {a.image && (
-                      <div className="relative h-32 bg-linear-to-br from-primary/10 to-primary/5 overflow-hidden">
+                      <div className="relative h-32 bg-linear-to-br from-primary/10 to-primary/5 overflow-hidden aspect-video">
                         <img
                           src={a.image || "/placeholder.svg"}
                           alt={a.title}
