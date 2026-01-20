@@ -115,10 +115,11 @@ export default function ContactPageClient() {
         })
       }
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error)
       console.error("Form submission error:", error)
       setMessage({
         type: "error",
-        text: "Network error. Please check your connection and try again.",
+        text: `Error: ${errorMessage}. Please try again or contact us directly at ghosts.lk@proton.me`,
       })
     } finally {
       setIsLoading(false)
