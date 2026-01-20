@@ -60,7 +60,7 @@ export default function ContactPageClient() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          from: "noreply@ghostprotocol.lk",
+          from: "onboarding@resend.dev",
           to: "ghosts.lk@proton.me",
           reply_to: formData.email,
           subject: `📬 New Contact Form Submission from ${formData.name}`,
