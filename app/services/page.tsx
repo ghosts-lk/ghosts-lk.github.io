@@ -75,16 +75,17 @@ const mainServices = [
     ],
     highlight: true,
   },
-]
-
-const supportingServices = [
   {
     icon: Shield,
     title: "Cyber Security",
     description:
       "Protect your business from threats. We implement security best practices, conduct vulnerability assessments, and help you stay compliant.",
     features: ["Security Audits", "Vulnerability Assessment", "Data Protection", "Compliance & Regulations"],
+    highlight: true,
   },
+]
+
+const supportingServices = [
   {
     icon: Lock,
     title: "Penetration Testing",
