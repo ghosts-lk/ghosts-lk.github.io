@@ -50,24 +50,24 @@ export interface CompanyStat {
 
 export const companyStats: CompanyStat[] = [
   {
-    value: "50+",
-    label: "Projects Delivered",
+    value: "85+",
+    label: "Projects Completed",
     description: "Successful projects completed across various industries",
   },
   {
-    value: "2+",
+    value: "3",
     label: "Years in Business",
     description: "Established track record of reliable service",
   },
   {
-    value: "35+",
-    label: "Happy Clients",
-    description: "Businesses and individuals who trust our work",
+    value: "70%",
+    label: "Repeat Clients",
+    description: "Businesses and individuals who return for more work",
   },
   {
-    value: "98%",
-    label: "Client Retention",
-    description: "Clients who return for additional projects",
+    value: "4H",
+    label: "Average Response Time",
+    description: "Quick and reliable support when you need it",
   },
 ]
 
