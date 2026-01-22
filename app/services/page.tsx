@@ -83,10 +83,11 @@ const mainServices = [
     features: ["Security Audits", "Vulnerability Assessment", "Data Protection", "Compliance & Regulations"],
     highlight: true,
   },
-]
-
-const supportingServices = [
   {
+    icon: Lock,
+    title: "Penetration Testing",
+    description:
+      "Ide
     icon: Lock,
     title: "Penetration Testing",
     description:
