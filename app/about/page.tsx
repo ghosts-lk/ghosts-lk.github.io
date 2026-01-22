@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Users, Zap, Globe, Award, Building2, Calendar, Target, Briefcase } from "lucide-react"
+import { Users, Zap, Globe, Award, Building2, Calendar, Target, Briefcase, CheckCircle2, Shield } from "lucide-react"
 import { teamMembers, companyStats } from "@/lib/data"
 
 export const metadata: Metadata = {
@@ -16,28 +16,40 @@ export const metadata: Metadata = {
 
 const values = [
   {
-    icon: Zap,
-    title: "Practical Solutions",
+    icon: CheckCircle2,
+    title: "Honest Assessments",
     description:
-      "We focus on what works, not what's trendy. Every recommendation is grounded in real-world experience and your specific business context.",
+      "We tell you what you actually need, not what makes us more money. Sometimes that means recommending simpler solutions.",
   },
   {
-    icon: Users,
-    title: "Honest Communication",
+    icon: Zap,
+    title: "Reliable Delivery",
     description:
-      "No jargon, no upselling. We explain things clearly and tell you when something won't work, even if it means less business for us.",
+      "We give realistic timelines and stick to them. If something changes, you'll know immediately — no surprises.",
+  },
+  {
+    icon: Shield,
+    title: "Built to Last",
+    description:
+      "We use proven technologies and write clean code. Your website will still work well three years from now.",
   },
   {
     icon: Globe,
-    title: "Open Source First",
+    title: "No Vendor Lock-in",
     description:
-      "We prioritize open-source technologies because they give you control, flexibility, and freedom from vendor lock-in.",
+      "Everything we build is yours. Full access to code, hosting credentials, and documentation. Leave anytime with everything.",
+  },
+  {
+    icon: Users,
+    title: "Direct Communication",
+    description:
+      "You talk to the people actually building your project. No account managers, no game of telephone.",
   },
   {
     icon: Award,
-    title: "Long-term Thinking",
+    title: "Local Understanding",
     description:
-      "We build solutions that will serve you for years, not quick fixes that need replacement in six months.",
+      "We understand Sri Lankan businesses, payment gateways, hosting infrastructure, and what actually works here.",
   },
 ]
 
