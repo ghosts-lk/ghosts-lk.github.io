@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Code, Globe, TrendingUp, Wrench, Cloud, Zap } from "lucide-react"
+import { Code, Globe, TrendingUp, Wrench, Cloud, Zap, Shield } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Services | Ghost Protocol",
@@ -63,6 +63,13 @@ const mainServices = [
 ]
 
 const supportingServices = [
+  {
+    icon: Shield,
+    title: "Cyber Security",
+    description:
+      "Protect your business from threats. We implement security best practices, conduct vulnerability assessments, and help you stay compliant.",
+    features: ["Security Audits", "Vulnerability Assessment", "Data Protection", "Compliance & Regulations"],
+  },
   {
     icon: Wrench,
     title: "Website Maintenance",
