@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { Code, Wrench, Globe, Monitor, Settings, TrendingUp } from "lucide-react"
+import { Code, Wrench, Globe, Monitor, Settings, TrendingUp, Shield, Lock } from "lucide-react"
 
 const services = [
   {
@@ -18,6 +18,16 @@ const services = [
     title: "Lead Generation",
     description:
       "Strategic lead generation and digital marketing solutions to grow your qualified prospect pipeline ethically.",
+  },
+  {
+    icon: Shield,
+    title: "Cyber Security",
+    description: "Protect your business from threats with security audits, vulnerability assessments, and compliance support.",
+  },
+  {
+    icon: Lock,
+    title: "Penetration Testing",
+    description: "Identify vulnerabilities before attackers do. Ethical hacking to find and fix security weaknesses.",
   },
   {
     icon: Wrench,
