@@ -71,14 +71,7 @@ const mainServices = [
       "Landing Page Optimization",
       "Lead Scoring",
       "Conversion Funnel Setup",
-      "CRMLock,
-    title: "Penetration Testing",
-    description:
-      "Identify vulnerabilities before attackers do. Our ethical hackers simulate real attacks to find security weaknesses in your systems and applications.",
-    features: ["Web App Testing", "Network Testing", "Social Engineering Tests", "Detailed Reports"],
-  },
-  {
-    icon:  Integration",
+      "CRM Integration",
     ],
     highlight: true,
   },
@@ -91,6 +84,13 @@ const supportingServices = [
     description:
       "Protect your business from threats. We implement security best practices, conduct vulnerability assessments, and help you stay compliant.",
     features: ["Security Audits", "Vulnerability Assessment", "Data Protection", "Compliance & Regulations"],
+  },
+  {
+    icon: Lock,
+    title: "Penetration Testing",
+    description:
+      "Identify vulnerabilities before attackers do. Our ethical hackers simulate real attacks to find security weaknesses in your systems and applications.",
+    features: ["Web App Testing", "Network Testing", "Social Engineering Tests", "Detailed Reports"],
   },
   {
     icon: Wrench,
