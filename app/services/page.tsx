@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Code, Globe, TrendingUp, Wrench, Cloud, Zap, Shield } from "lucide-react"
+import { Code, Globe, TrendingUp, Wrench, Cloud, Zap, Shield, Megaphone, Lock } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Services | Ghost Protocol",
@@ -57,6 +57,28 @@ const mainServices = [
       "WhatsApp Marketing",
       "Social Media Setup",
       "Analytics & Reporting",
+    ],
+    highlight: true,
+  },
+  {
+    icon: Megaphone,
+    title: "Lead Generation",
+    description:
+      "Attract qualified leads for your business. We use targeted strategies and proven tactics to identify and reach potential customers who are ready to buy.",
+    features: [
+      "Lead Capture Systems",
+      "Email Campaigns",
+      "Landing Page Optimization",
+      "Lead Scoring",
+      "Conversion Funnel Setup",
+      "CRMLock,
+    title: "Penetration Testing",
+    description:
+      "Identify vulnerabilities before attackers do. Our ethical hackers simulate real attacks to find security weaknesses in your systems and applications.",
+    features: ["Web App Testing", "Network Testing", "Social Engineering Tests", "Detailed Reports"],
+  },
+  {
+    icon:  Integration",
     ],
     highlight: true,
   },
