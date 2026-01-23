@@ -87,13 +87,13 @@ const mainServices = [
     icon: Lock,
     title: "Penetration Testing",
     description:
-      "Ide
-    icon: Lock,
-    title: "Penetration Testing",
-    description:
       "Identify vulnerabilities before attackers do. Our ethical hackers simulate real attacks to find security weaknesses in your systems and applications.",
     features: ["Web App Testing", "Network Testing", "Social Engineering Tests", "Detailed Reports"],
+    highlight: true,
   },
+]
+
+const supportingServices = [
   {
     icon: Wrench,
     title: "Website Maintenance",
