@@ -37,6 +37,45 @@ export default function PortfolioPage() {
       <section className="py-16 px-6">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* AR Experiences Showcase Card */}
+            <Link href="/ar">
+              <Card className="h-full border-border/50 hover:border-primary/50 transition-all cursor-pointer group overflow-hidden bg-gradient-to-br from-primary/10 to-primary/5 hover:from-primary/15 hover:to-primary/10">
+                <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-5xl mb-2">🥽</div>
+                    <p className="text-sm font-semibold text-primary">AR Technology</p>
+                  </div>
+                </div>
+                <CardHeader>
+                  <Badge className="w-fit mb-2 bg-primary/20 text-primary hover:bg-primary/30">Innovation</Badge>
+                  <CardTitle className="text-foreground group-hover:text-primary transition-colors">
+                    AR Experiences
+                  </CardTitle>
+                  <CardDescription className="line-clamp-3">
+                    Augmented Reality solutions for restaurants, retail, and brand experiences. WebXR-powered immersive
+                    interactions.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    <Badge variant="secondary" className="text-xs">
+                      Three.js
+                    </Badge>
+                    <Badge variant="secondary" className="text-xs">
+                      WebXR
+                    </Badge>
+                    <Badge variant="secondary" className="text-xs">
+                      3D Rendering
+                    </Badge>
+                  </div>
+                  <div className="flex items-center justify-between text-xs text-muted-foreground pt-4 border-t border-border/50">
+                    <span>Ghost Protocol</span>
+                    <span>2026</span>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
             {portfolioProjects.map((item) => (
               <Link key={item.id} href={`/portfolio/${item.id}`}>
                 <Card className="h-full border border-border hover:border-primary/50 transition-all cursor-pointer group overflow-hidden">
