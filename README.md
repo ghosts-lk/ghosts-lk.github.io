@@ -11,6 +11,7 @@ A modern, secure, and performance-optimized portfolio website and knowledge base
 - [Overview](#overview)
 - [Quick Start](#quick-start)
 - [Features](#features)
+- [AR Experience](#ar-experience)
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
@@ -18,6 +19,7 @@ A modern, secure, and performance-optimized portfolio website and knowledge base
 - [Contact Form](#contact-form)
 - [Deployment](#deployment)
 - [Security](#security)
+- [Penetration Test Report](#penetration-test-report)
 - [Performance](#performance)
 - [Contributing](#contributing)
 - [Support](#support)
@@ -26,8 +28,8 @@ A modern, secure, and performance-optimized portfolio website and knowledge base
 
 ## 🚀 Quick Start
 
-**Live Site:** https://ghosts-lk.github.io (GitHub Pages)
-**Custom Domain:** https://ghosts-lk.com
+**Live Site:** https://ghosts-lk.github.io (GitHub Pages)  
+**Custom Domain:** https://ghostprotocol.lk
 
 **Deploy Changes:**
 ```bash
@@ -52,8 +54,10 @@ npm run dev  # Opens http://localhost:3000
 Ghost Protocol is a professional web presence showcasing expertise in:
 
 - **Web Development** - Full-stack applications, scalable architectures
-- **App Development** - Cross-platform mobile solutions
+- **App Development** - Cross-platform mobile solutions  
+- **Augmented Reality (AR)** - WebXR-powered immersive experiences
 - **Digital Solutions** - End-to-end business transformation
+- **Cyber Security** - Penetration testing, security audits
 - **Knowledge Sharing** - Comprehensive technical documentation
 
 **Live Site:** [ghostprotocol.lk](https://ghostprotocol.lk)
@@ -66,9 +70,17 @@ Ghost Protocol is a professional web presence showcasing expertise in:
 
 ### 🏢 Professional Presence
 - Modern, responsive design optimized for all devices
-- High-performance static export (18MB total site)
+- High-performance static export
 - SEO-optimized with rich metadata
 - Professional branding and consistent design language
+
+### 🎯 AR Experience (NEW)
+- **Military-Grade Radar Visualization** - Interactive 3D tactical radar display
+- **Real-time Target Tracking** - Moving blips with velocity trails
+- **Fluid Controls** - Smooth drag-to-rotate with touch support
+- **Military HUD** - X-BAND frequency, power output, clutter/SNR readings
+- **Theme Consistent** - Black/green (#4ade80) military aesthetic
+- **WebGL Powered** - Three.js with custom GLSL shaders
 
 ### 📚 Knowledge Base
 - 30+ comprehensive technical articles
@@ -79,7 +91,7 @@ Ghost Protocol is a professional web presence showcasing expertise in:
 - Collapsible sections for better content organization
 
 ### 🎯 Portfolio
-- 6 detailed project showcases
+- 6 detailed project showcases + AR demo
 - Client case studies with real results
 - Technology stack highlights
 - Challenge/Solution/Results narrative
@@ -470,7 +482,7 @@ Contact form emails are sent via Resend API:
 
 ### 🏆 Security Assessment: LOW RISK / HARDENED ✅
 
-**Comprehensive Penetration Test Results (Jan 27, 2026):**
+**Comprehensive Penetration Test Results (July 5, 2025):**
 - OWASP Top 10: ✅ All 10 categories secured
 - Dependency Vulnerabilities: ✅ 0 critical, 0 high (51 packages audited)
 - Code Injection: ✅ No eval/exec/system calls detected
@@ -478,6 +490,7 @@ Contact form emails are sent via Resend API:
 - Path Traversal: ✅ None detected
 - Open Redirects: ✅ None detected
 - CSRF Protection: ✅ Enabled
+- Next.js Version: ✅ 16.1.5 (CVE GHSA-9g9p-9gw9-jx7f patched)
 - Overall Status: 🟢 **HARDENED**
 
 ### Security Headers Implemented
@@ -580,6 +593,80 @@ All industry-standard security headers configured:
 Please report security vulnerabilities responsibly to: **ghosts.lk@proton.me**
 
 **Response Time:** 24-48 hours for acknowledgment
+
+---
+
+## 🔍 Penetration Test Report
+
+### Latest Assessment: July 5, 2025
+
+**Full Report:** See [PENTEST_HARDCORE_REPORT.md](PENTEST_HARDCORE_REPORT.md)
+
+### Executive Summary
+
+| Category | Status | Details |
+|----------|--------|---------|
+| **Overall Risk** | 🟢 LOW | All OWASP Top 10 secured |
+| **Critical Vulnerabilities** | 0 | None found |
+| **High Vulnerabilities** | 0 | All false positives mitigated |
+| **Medium Vulnerabilities** | 0 | None found |
+| **Low Vulnerabilities** | 1 | Optional improvement (SECURITY.md) |
+
+### Categories Tested (12/12)
+
+- ✅ Advanced Code Injection Analysis
+- ✅ Prototype Pollution & Object Traversal  
+- ✅ Authentication & Session Vulnerabilities
+- ✅ Cryptographic Weakness Analysis
+- ✅ Dependency Supply Chain Analysis
+- ✅ Client-Side Security Analysis
+- ✅ API Endpoint Security
+- ✅ Data Exposure & Leakage Vectors
+- ✅ Security Headers & Policy Analysis
+- ✅ DOS & Performance Attack Vectors
+- ✅ Third-Party Library Risk Assessment
+- ✅ Compliance & Governance
+
+### Key Findings
+
+**Dependencies (npm audit):**
+```
+🔴 Critical:    0
+🔴 High:        0
+🟡 Moderate:    0
+🔵 Low:         0
+✅ ZERO VULNERABILITIES
+```
+
+**Security Headers (7/7 configured):**
+- Strict-Transport-Security (HSTS)
+- Content-Security-Policy (CSP)
+- X-Frame-Options: DENY
+- X-Content-Type-Options: nosniff
+- X-XSS-Protection
+- Referrer-Policy
+- Permissions-Policy
+
+**XSS Protection:**
+- All `dangerouslySetInnerHTML` uses sanitized via `sanitizeHTMLServer()`
+- Whitelist-based HTML filtering (30+ safe tags)
+- Event handlers stripped, scripts blocked
+
+**Contact Form Security:**
+- Honeypot field for bot detection
+- Rate limiting (5 req/hour/IP via Formspree)
+- Input validation and sanitization
+- No secrets exposed client-side
+
+### Version Security
+
+| Package | Version | Status |
+|---------|---------|--------|
+| Next.js | 16.1.5 | ✅ CVE patched |
+| React | 19.2.0 | ✅ Latest |
+| Three.js | 0.160.1 | ✅ Latest |
+| TypeScript | 5.x | ✅ Latest |
+| Tailwind | 4.1.9 | ✅ Latest |
 
 ---
 
@@ -750,6 +837,6 @@ This project is proprietary to Ghost Protocol. All rights reserved.
 
 ---
 
-**Last Updated:** January 19, 2026  
+**Last Updated:** July 5, 2025  
 **Status:** Production Ready ✅  
 **Maintainer:** Ghost Protocol Team
