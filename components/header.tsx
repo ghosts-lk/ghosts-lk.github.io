@@ -37,7 +37,7 @@ export function Header() {
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative group"
               >
                 {item.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-primary/50 group-hover:w-full transition-all duration-300" />
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-primary to-primary/50 group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
             <Link href="/contact">

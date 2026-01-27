@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { portfolioProjects } from "@/lib/data"
+import { RadarIllustration } from "@/components/radar-illustration"
 
 export const metadata: Metadata = {
   title: "Portfolio | Ghost Protocol",
@@ -39,15 +40,15 @@ export default function PortfolioPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* AR Experiences Showcase Card */}
             <Link href="/ar">
-              <Card className="h-full border-border/50 hover:border-primary/50 transition-all cursor-pointer group overflow-hidden bg-gradient-to-br from-primary/10 to-primary/5 hover:from-primary/15 hover:to-primary/10">
-                <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-5xl mb-2">🥽</div>
-                    <p className="text-sm font-semibold text-primary">AR Technology</p>
+              <Card className="h-full border border-border hover:border-primary/50 transition-all cursor-pointer group overflow-hidden">
+                <div className="relative h-48 overflow-hidden bg-black flex items-center justify-center">
+                  <div className="absolute inset-0 opacity-30 group-hover:opacity-50 transition-opacity">
+                    <RadarIllustration />
                   </div>
+                  <div className="relative z-10 text-center"></div>
                 </div>
                 <CardHeader>
-                  <Badge className="w-fit mb-2 bg-primary/20 text-primary hover:bg-primary/30">Innovation</Badge>
+                  <Badge className="w-fit mb-2 bg-primary/10 text-primary hover:bg-primary/20">AR Technology</Badge>
                   <CardTitle className="text-foreground group-hover:text-primary transition-colors">
                     AR Experiences
                   </CardTitle>

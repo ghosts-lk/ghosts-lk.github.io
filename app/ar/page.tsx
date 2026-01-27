@@ -46,31 +46,30 @@ export default function ARPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Animated grid background */}
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(74,222,128,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(74,222,128,0.03)_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none" />
+      <div className="fixed inset-0 bg-[linear-gradient(rgba(74,222,128,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(74,222,128,0.03)_1px,transparent_1px)] bg-size-[64px_64px] pointer-events-none" />
 
       {/* Hero Section */}
       <section className="relative py-20 px-6 border-b border-border/50">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/2 right-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]" style={{ animationDelay: "0s" }} />
-          <div className="absolute bottom-1/4 left-1/3 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px]" style={{ animationDelay: "2s" }} />
+          <div className="absolute top-1/2 right-1/4 w-150 h-150 bg-primary/10 rounded-full blur-[120px]" style={{ animationDelay: "0s" }} />
+          <div className="absolute bottom-1/4 left-1/3 w-100 h-100 bg-primary/5 rounded-full blur-[100px]" style={{ animationDelay: "2s" }} />
         </div>
 
         <div className="container mx-auto max-w-4xl relative z-10">
           <div className="mb-8">
-            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-gradient-to-r from-primary/15 to-primary/10 border border-primary/40 hover:border-primary/60 transition-all mb-6">
+            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-linear-to-r from-primary/15 to-primary/10 border border-primary/40 hover:border-primary/60 transition-all mb-6">
               <span className="w-2.5 h-2.5 bg-primary rounded-full animate-pulse" />
               <span className="text-sm font-bold text-primary uppercase tracking-wide">AR Innovation</span>
             </div>
             <h1 className="text-5xl md:text-6xl font-black text-foreground mb-6 leading-[1.1] text-balance">
               Augmented Reality
               <br />
-              <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
                 for Sri Lanka
               </span>
             </h1>
             <p className="text-xl text-muted-foreground mb-4 max-w-2xl font-medium">
-              Be the first in your industry to offer AR experiences. We bring immersive technology to businesses in
-              Sri Lanka, transforming how customers interact with products and services.
+              Experience cutting-edge military-grade surveillance systems visualized in 3D. Ghost Protocol brings advanced AR technology to Sri Lanka, showcasing next-generation tactical displays and real-time data visualization.
             </p>
           </div>
 
@@ -103,28 +102,35 @@ export default function ARPage() {
       {/* AR Experience */}
       <section className="relative py-16 px-6">
         <div className="container mx-auto max-w-3xl relative z-10">
-          <h2 className="text-3xl font-bold mb-2 text-foreground">Ghost Protocol AR Experience</h2>
-          <p className="text-muted-foreground mb-12">View our logo in immersive 3D using your device's camera</p>
+          <h2 className="text-3xl font-bold mb-2 text-foreground">Military Radar System - Live</h2>
+          <p className="text-muted-foreground mb-12">Experience a realistic 3D military surveillance radar with real-time target tracking</p>
 
           <Card className="border-border/50 hover:border-primary/30 transition-all bg-background/50 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="text-foreground">Ghost Protocol Brand in 3D</CardTitle>
+              <CardTitle className="text-foreground">Live Tactical Radar Display</CardTitle>
               <CardDescription>
-                Interactive 3D visualization of the Ghost Protocol brand. Compatible with devices supporting WebXR.
+                Interactive military-grade surveillance radar system. Displays real-time target tracking, range rings, azimuth markers, and system status. Drag to rotate the view.
               </CardDescription>
             </CardHeader>
             <CardContent>
               <BrandARViewer />
             </CardContent>
           </Card>
+
+          <div className="mt-8 p-6 rounded-lg bg-primary/5 border border-primary/20">
+            <h3 className="font-semibold text-foreground mb-2">Technical Showcase</h3>
+            <p className="text-sm text-muted-foreground">
+              This military radar demonstrates the advanced capabilities of our AR platform. However, we specialize in creating practical, real-world AR experiences tailored to your business needs. Whether you need interactive AR menus for restaurants, virtual product visualization for retail, immersive brand experiences, or custom data dashboards—we build solutions that drive real business value and customer engagement.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Use Cases */}
       <section className="relative py-16 px-6 border-t border-border/50">
         <div className="container mx-auto max-w-5xl relative z-10">
-          <h2 className="text-3xl font-bold mb-2 text-foreground">AR Use Cases for Your Business</h2>
-          <p className="text-muted-foreground mb-12">Proven applications across multiple industries</p>
+          <h2 className="text-3xl font-bold mb-2 text-foreground">Real-World AR Solutions for Your Business</h2>
+          <p className="text-muted-foreground mb-12">Custom AR applications that engage customers and drive results</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {arUseCases.map((useCase, idx) => (
@@ -186,7 +192,7 @@ export default function ARPage() {
                   <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-linear-to-r from-primary/50 to-transparent -z-10" />
                 )}
                 <div className="border border-border/50 hover:border-primary/30 rounded-lg p-6 text-center bg-background/50 backdrop-blur-sm hover:bg-background/60 transition-all">
-                  <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center font-bold text-background mx-auto mb-4">
+                  <div className="w-10 h-10 bg-linear-to-br from-primary to-primary/70 rounded-full flex items-center justify-center font-bold text-background mx-auto mb-4">
                     {item.step}
                   </div>
                   <h3 className="font-semibold mb-2 text-foreground">{item.title}</h3>

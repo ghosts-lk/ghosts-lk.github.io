@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { Code, Wrench, Globe, Monitor, Settings, TrendingUp, Shield, Lock } from "lucide-react"
+import { Code, Wrench, Globe, Monitor, Settings, TrendingUp, Shield, Lock, Zap } from "lucide-react"
 
 const services = [
   {
@@ -44,6 +44,11 @@ const services = [
     title: "Maintenance & Support",
     description: "Ongoing technical support and maintenance to keep your systems running smoothly 24/7.",
   },
+  {
+    icon: Zap,
+    title: "Augmented Reality (AR)",
+    description: "Custom AR experiences for restaurants, retail, and brands. Interactive menus, product visualization, and immersive interactions.",
+  },
 ]
 
 export function Services() {
@@ -70,7 +75,7 @@ export function Services() {
             >
               <CardContent className="p-8">
                 <div className="relative mb-6">
-                  <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center group-hover:from-primary/30 group-hover:to-primary/20 transition-all duration-300">
+                  <div className="w-16 h-16 rounded-xl bg-linear-to-br from-primary/20 to-primary/10 flex items-center justify-center group-hover:from-primary/30 group-hover:to-primary/20 transition-all duration-300">
                     <service.icon className="h-8 w-8 text-primary" />
                   </div>
                 </div>
