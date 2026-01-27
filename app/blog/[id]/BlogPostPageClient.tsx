@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react"
 import { blogPosts } from "./blogPosts"
+import { sanitizeHTMLServer } from "@/lib/sanitize"
 
 interface PageProps {
   params: { id: string }
@@ -103,7 +104,7 @@ export default function BlogPostPageClient({ params }: PageProps) {
               prose-img:rounded-lg prose-img:border prose-img:border-border/30
               [&_.lead]:text-xl [&_.lead]:text-foreground [&_.lead]:leading-relaxed [&_.lead]:mb-8 [&_.lead]:font-medium [&_.lead]:text-justify
               [&_table]:border [&_table]:border-border/30"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHTMLServer(post.content) }}
           />
 
           {/* Share Section */}

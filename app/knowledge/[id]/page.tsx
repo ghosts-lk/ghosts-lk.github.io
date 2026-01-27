@@ -15,6 +15,7 @@ import {
   ChevronRight,
 } from "lucide-react"
 import { knowledgeArticles, getRelatedArticles, getArticleById, knowledgeCategories } from "@/lib/data"
+import { sanitizeHTMLServer } from "@/lib/sanitize"
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -306,7 +307,7 @@ export default async function KnowledgeArticlePage({ params }: PageProps) {
 
             <div
               className="article-content space-y-6"
-              dangerouslySetInnerHTML={{ __html: article.content }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHTMLServer(article.content) }}
             />
 
             {/* Tags */}
