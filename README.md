@@ -28,8 +28,8 @@ A modern, secure, and performance-optimized portfolio website and knowledge base
 
 ## 🚀 Quick Start
 
-**Live Site:** https://ghosts-lk.github.io (GitHub Pages)  
-**Custom Domain:** https://ghostprotocol.lk
+**Live Site:** https://ghosts.lk (Custom Domain - HTTPS Enabled ✅)  
+**GitHub Pages:** https://ghosts-lk.github.io (Fallback)
 
 **Deploy Changes:**
 ```bash
@@ -45,7 +45,7 @@ npm install
 npm run dev  # Opens http://localhost:3000
 ```
 
-**Contact Form Works:** Navigate to `/contact` and submit a test message. You'll receive an email at `ghosts.lk@proton.me`
+**Contact Form Works:** Navigate to `/contact` and submit a test message. You'll receive an email at `ghosts-lk@proton.me`
 
 ---
 
