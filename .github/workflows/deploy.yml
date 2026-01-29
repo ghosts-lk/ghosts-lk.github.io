@@ -35,7 +35,7 @@ jobs:
       - name: Create CNAME for custom domain
         run: |
           mkdir -p ./out
-          echo "ghosts-lk.com" > ./out/CNAME
+          echo "ghosts.lk" > ./out/CNAME
 
       - name: Create security headers
         run: |
@@ -72,9 +72,9 @@ jobs:
         run: |
           echo "✅ Deployment completed successfully!"
           echo "📍 Site available at: https://ghosts-lk.github.io"
-          echo "🌐 Custom domain: https://ghosts-lk.com (after DNS setup)"
+          echo "🌐 Custom domain: https://ghosts.lk (HTTPS enabled)"
           echo ""
-          echo "� Contact Form:"
+          echo "📧 Contact Form:"
           echo "✓ Powered by Formspree (free tier, no API key needed)"
           echo "✓ CORS-enabled for static sites"
           echo "✓ Emails sent to: ghosts.lk@proton.me"
