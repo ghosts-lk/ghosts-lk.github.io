@@ -115,20 +115,20 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     id: "dragonscale",
     title: "DragonScale Restaurant Platform",
-    category: "Open Source Product",
+    category: "Restaurant Platform",
     description:
       "A modern, self-hosted restaurant ordering platform. Accept online orders, manage menus, track deliveries, and own your customer relationships — without monthly fees or vendor lock-in.",
     image: "/dragonscale/hero.jpg",
     features: ["Online Ordering", "Menu Management", "Order Tracking", "Admin Dashboard", "Payment Integration", "Mobile-First Design"],
     technologies: ["PHP 8", "SQLite", "Vanilla JS", "CSS3"],
-    client: "Ghost Protocol (Open Source)",
+    client: "Ghost Protocol",
     year: "2026",
     challenge:
       "Restaurant owners face a difficult choice: pay 15-30% commission to third-party ordering platforms, or invest heavily in custom solutions. Small and medium restaurants need an affordable way to own their online ordering without technical complexity.",
     solution:
-      "We built DragonScale — an open-source, self-hosted ordering platform that any restaurant can deploy for free. It uses SQLite for zero-configuration setup, includes a beautiful customer ordering interface, and provides a powerful admin panel for order and menu management.",
+      "We built DragonScale — a powerful, self-hosted ordering platform that restaurants can deploy and fully own. It uses SQLite for zero-configuration setup, includes a beautiful customer ordering interface, and provides a powerful admin panel for order and menu management.",
     results: [
-      "100% open source under MIT license",
+      "Full source code access with license",
       "Zero monthly fees or per-order charges",
       "Deploys on any PHP 8+ hosting",
       "Production-ready with security built-in",
