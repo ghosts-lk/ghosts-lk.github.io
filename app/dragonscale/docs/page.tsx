@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -257,12 +258,14 @@ export default function DocsPage() {
                   <CardDescription>The command center for your restaurant operations</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  {/* Screenshot placeholder */}
-                  <div className="aspect-video bg-gradient-to-br from-card to-muted rounded-lg border border-border flex items-center justify-center">
-                    <div className="text-center">
-                      <BarChart3 className="h-12 w-12 text-primary mx-auto mb-3" />
-                      <p className="text-muted-foreground text-sm">Dashboard Overview Screenshot</p>
-                    </div>
+                  <div className="aspect-video bg-gradient-to-br from-card to-muted rounded-lg border border-border overflow-hidden">
+                    <Image
+                      src="/dragonscale/screenshots/admin-dashboard.png"
+                      alt="Dashboard Overview"
+                      width={1280}
+                      height={800}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">
@@ -340,12 +343,14 @@ export default function DocsPage() {
                     </div>
                   </div>
 
-                  {/* Screenshot placeholder */}
-                  <div className="aspect-video bg-gradient-to-br from-card to-muted rounded-lg border border-border flex items-center justify-center">
-                    <div className="text-center">
-                      <Receipt className="h-12 w-12 text-primary mx-auto mb-3" />
-                      <p className="text-muted-foreground text-sm">Order Management Screenshot</p>
-                    </div>
+                  <div className="aspect-video bg-gradient-to-br from-card to-muted rounded-lg border border-border overflow-hidden">
+                    <Image
+                      src="/dragonscale/screenshots/checkout.png"
+                      alt="Order Management"
+                      width={1280}
+                      height={800}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">
@@ -395,12 +400,14 @@ export default function DocsPage() {
                   <CardDescription>Add, edit, and organize your menu items</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-8">
-                  {/* Screenshot placeholder */}
-                  <div className="aspect-video bg-gradient-to-br from-card to-muted rounded-lg border border-border flex items-center justify-center">
-                    <div className="text-center">
-                      <ChefHat className="h-12 w-12 text-primary mx-auto mb-3" />
-                      <p className="text-muted-foreground text-sm">Menu Editor Screenshot</p>
-                    </div>
+                  <div className="aspect-video bg-gradient-to-br from-card to-muted rounded-lg border border-border overflow-hidden">
+                    <Image
+                      src="/dragonscale/screenshots/menu-browse.png"
+                      alt="Menu Editor"
+                      width={1280}
+                      height={800}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
 
                   <div className="grid md:grid-cols-3 gap-6">
