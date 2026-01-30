@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -311,13 +310,13 @@ export default function DragonScalePage() {
               </div>
             </div>
             <div className="bg-gradient-to-br from-card to-card/50 border border-border rounded-2xl overflow-hidden">
-              <div className="relative aspect-[4/3] bg-muted">
-                <Image
-                  src="/dragonscale/screenshots/menu-preview.png"
-                  alt="DragonScale ordering interface"
-                  fill
-                  className="object-cover object-top"
-                />
+              <div className="relative aspect-[4/3] bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
+                <div className="text-center p-6">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/20 flex items-center justify-center">
+                    <ShoppingCart className="h-8 w-8 text-primary" />
+                  </div>
+                  <p className="text-muted-foreground">Live Demo Coming Soon</p>
+                </div>
               </div>
               <div className="p-6">
                 <h3 className="text-lg font-semibold text-foreground mb-2">Beautiful Ordering Experience</h3>
