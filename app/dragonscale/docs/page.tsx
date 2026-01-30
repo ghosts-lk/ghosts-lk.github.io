@@ -37,6 +37,7 @@ import {
   Filter,
   Printer,
   Volume2,
+  Shield,
 } from "lucide-react"
 
 export const metadata: Metadata = {
