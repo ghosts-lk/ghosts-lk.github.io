@@ -313,7 +313,7 @@ export default function DragonScalePage() {
             <div className="bg-gradient-to-br from-card to-card/50 border border-border rounded-2xl overflow-hidden">
               <div className="relative aspect-[4/3] bg-muted">
                 <Image
-                  src="/dragonscale/screenshots/menu-preview.svg"
+                  src="/dragonscale/screenshots/menu-preview.png"
                   alt="DragonScale ordering interface"
                   fill
                   className="object-cover object-top"
