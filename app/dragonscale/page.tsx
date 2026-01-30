@@ -34,18 +34,18 @@ import {
 export const metadata: Metadata = {
   title: "DragonScale | Restaurant Ordering Platform by Ghost Protocol",
   description:
-    "DragonScale is a modern, open-source restaurant ordering platform. Accept online orders, manage your menu, track deliveries, and grow your business.",
+    "DragonScale is a modern, professional restaurant ordering platform. Accept online orders, manage your menu, track deliveries, and grow your business.",
   openGraph: {
     title: "DragonScale | Restaurant Ordering Platform",
     description:
-      "Modern, open-source restaurant ordering platform. Accept online orders, manage your menu, and grow your business.",
+      "Modern, professional restaurant ordering platform. Accept online orders, manage your menu, and grow your business.",
     type: "website",
     images: ["/dragonscale/og-image.jpg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "DragonScale | Restaurant Ordering Platform",
-    description: "Modern, open-source restaurant ordering platform by Ghost Protocol.",
+    description: "Modern, professional restaurant ordering platform by Ghost Protocol.",
   },
 }
 
@@ -136,8 +136,8 @@ const technicalFeatures = [
 
 const benefits = [
   {
-    title: "No Monthly Fees",
-    description: "Unlike SaaS platforms, DragonScale is self-hosted. No recurring subscription costs.",
+    title: "Flexible Pricing",
+    description: "Custom deployment options tailored to your business. No surprise fees or hidden costs.",
     icon: CreditCard,
   },
   {
@@ -146,8 +146,8 @@ const benefits = [
     icon: Users,
   },
   {
-    title: "Open Source",
-    description: "MIT licensed. Customize, extend, and white-label as you need.",
+    title: "Professional Solution",
+    description: "Built and maintained by Ghost Protocol with ongoing support and updates.",
     icon: Terminal,
   },
   {
@@ -178,7 +178,7 @@ export default function DragonScalePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-                Open Source • MIT License
+                Professional Solution • By Ghost Protocol
               </Badge>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance leading-tight">
                 Restaurant Ordering,{" "}
@@ -194,10 +194,9 @@ export default function DragonScalePage() {
                     View Documentation
                   </Button>
                 </Link>
-                <Link href="https://github.com/ghosts-lk/DragonScale" target="_blank" rel="noopener noreferrer">
+                <Link href="/contact">
                   <Button size="lg" variant="outline" className="gap-2">
-                    <Terminal className="h-5 w-5" />
-                    GitHub Repository
+                    Contact Us
                   </Button>
                 </Link>
               </div>
@@ -324,15 +323,12 @@ export default function DragonScalePage() {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-foreground font-medium">DragonScale</span>
-                  <div className="flex items-center gap-2">
-                    <Badge className="bg-primary/10 text-primary">One-time setup</Badge>
-                    <span className="text-primary font-bold">$0/month</span>
-                  </div>
+                  <Link href="/contact" className="text-primary font-bold hover:underline">Contact for Pricing</Link>
                 </div>
               </div>
               <div className="mt-8 p-4 bg-primary/5 rounded-lg border border-primary/20">
                 <p className="text-sm text-muted-foreground">
-                  <strong className="text-foreground">Example:</strong> A restaurant doing 500 orders/month at $30 average could save <span className="text-primary font-semibold">$2,250+/month</span> in platform fees.
+                  <strong className="text-foreground">Custom Solutions:</strong> We offer flexible deployment options tailored to your restaurant's needs. <Link href="/contact" className="text-primary hover:underline">Get in touch</Link> for a personalized quote.
                 </p>
               </div>
             </div>
@@ -443,12 +439,6 @@ export default function DragonScalePage() {
             <Link href="/contact">
               <Button size="lg" variant="outline" className="gap-2">
                 Get Professional Setup
-              </Button>
-            </Link>
-            <Link href="https://github.com/ghosts-lk/DragonScale" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" variant="ghost" className="gap-2">
-                <Terminal className="h-5 w-5" />
-                View Source Code
               </Button>
             </Link>
           </div>

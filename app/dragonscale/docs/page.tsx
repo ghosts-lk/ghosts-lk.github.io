@@ -160,7 +160,7 @@ export default function DocsPage() {
                 <ol className="space-y-3 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2">
                     <span className="w-6 h-6 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
-                    Clone the repository from GitHub
+                    Contact us to get started
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="w-6 h-6 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
@@ -175,10 +175,10 @@ export default function DocsPage() {
                     Visit /admin to create your first admin account
                   </li>
                 </ol>
-                <Link href="https://github.com/ghosts-lk/DragonScale" target="_blank" rel="noopener noreferrer" className="block mt-6">
+                <Link href="/contact">
                   <Button variant="outline" className="w-full gap-2">
                     <Terminal className="h-4 w-4" />
-                    View on GitHub
+                    Contact Us
                   </Button>
                 </Link>
               </CardContent>
@@ -563,7 +563,7 @@ export default function DocsPage() {
                   <div>
                     <h4 className="font-semibold text-foreground mb-3">1. Clone the Repository</h4>
                     <pre className="bg-card border border-border rounded-lg p-4 text-sm overflow-x-auto">
-                      <code className="text-muted-foreground">git clone https://github.com/ghosts-lk/DragonScale.git</code>
+                      <code className="text-muted-foreground">Contact Ghost Protocol for installation package</code>
                     </pre>
                   </div>
                   <div>
@@ -783,10 +783,10 @@ chmod 644 data/restaurant.db`}</code>
           <Accordion type="single" collapsible className="space-y-4">
             <AccordionItem value="faq-1" className="border border-border rounded-lg px-6">
               <AccordionTrigger className="hover:no-underline text-left">
-                Is DragonScale really free?
+                How do I get DragonScale?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Yes! DragonScale is open-source and MIT licensed. You can download, use, modify, and deploy it for free. There are no hidden fees, no per-order charges, and no premium features behind a paywall.
+                Contact Ghost Protocol for pricing and deployment options. We offer flexible solutions tailored to your restaurant's needs, including professional setup, customization, and ongoing support.
               </AccordionContent>
             </AccordionItem>
 
@@ -846,10 +846,10 @@ chmod 644 data/restaurant.db`}</code>
             Whether you want to set it up yourself or need professional help, we're here for you.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="https://github.com/ghosts-lk/DragonScale" target="_blank" rel="noopener noreferrer">
+            <Link href="/contact">
               <Button size="lg" className="gap-2">
                 <Terminal className="h-5 w-5" />
-                Download from GitHub
+                Get Started
               </Button>
             </Link>
             <Link href="/contact">
