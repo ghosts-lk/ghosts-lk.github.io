@@ -310,25 +310,19 @@ export default function DragonScalePage() {
                 })}
               </div>
             </div>
-            <div className="bg-gradient-to-br from-card to-card/50 border border-border rounded-2xl p-8">
-              <h3 className="text-xl font-semibold text-foreground mb-6">Cost Comparison</h3>
-              <div className="space-y-6">
-                <div className="flex items-center justify-between pb-4 border-b border-border">
-                  <span className="text-muted-foreground">Third-Party Platforms</span>
-                  <span className="text-destructive font-semibold">15-30% per order</span>
-                </div>
-                <div className="flex items-center justify-between pb-4 border-b border-border">
-                  <span className="text-muted-foreground">Monthly SaaS</span>
-                  <span className="text-yellow-500 font-semibold">$50-300/month</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-foreground font-medium">DragonScale</span>
-                  <Link href="/contact" className="text-primary font-bold hover:underline">Contact for Pricing</Link>
-                </div>
+            <div className="bg-gradient-to-br from-card to-card/50 border border-border rounded-2xl overflow-hidden">
+              <div className="relative aspect-[4/3] bg-muted">
+                <Image
+                  src="/dragonscale/screenshots/menu-preview.svg"
+                  alt="DragonScale ordering interface"
+                  fill
+                  className="object-cover object-top"
+                />
               </div>
-              <div className="mt-8 p-4 bg-primary/5 rounded-lg border border-primary/20">
+              <div className="p-6">
+                <h3 className="text-lg font-semibold text-foreground mb-2">Beautiful Ordering Experience</h3>
                 <p className="text-sm text-muted-foreground">
-                  <strong className="text-foreground">Custom Solutions:</strong> We offer flexible deployment options tailored to your restaurant's needs. <Link href="/contact" className="text-primary hover:underline">Get in touch</Link> for a personalized quote.
+                  Mobile-first design with smooth animations, real-time cart updates, and intuitive navigation.
                 </p>
               </div>
             </div>
